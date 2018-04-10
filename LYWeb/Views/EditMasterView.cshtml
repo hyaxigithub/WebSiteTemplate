@@ -1,0 +1,94 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>编辑页模板</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    @*<link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/AdminLTE.min.css">
+    <link rel="stylesheet" href="~/Content/skins/_all-skins.min.css">*@
+   
+    <style>
+        .modal-dialog {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .modal-content {
+            overflow-y: scroll; 
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .modal-body {
+            overflow-y: scroll;
+            position: absolute;
+            top: 55px;
+            bottom: 65px;
+            width: 100%;
+        }
+
+        .modal-header .close {
+            margin-right: 15px;
+        }
+
+        .modal-footer {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    
+    <script src="~/Scripts/bootstrapvalidator-master/dist/js/bootstrapValidator.min.js"></script>
+    <script src="~/Scripts/bootstrapvalidator-master/dist/js/language/zh_CN.js"></script>
+    <link href="~/Scripts/bootstrapvalidator-master/dist/css/bootstrapValidator.min.css" rel="stylesheet" />
+    <!--模式对话框-->
+    <script src="~/Scripts/bootstrap3-dialog-master/dist/js/bootstrap-dialog.min.js"></script>
+    <link href="~/Scripts/bootstrap3-dialog-master/dist/css/bootstrap-dialog.min.css" rel="stylesheet" />
+    @*<link href="~/Scripts/bootstrap-treeview-master/dist/bootstrap-treeview.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-treeview-master/dist/bootstrap-treeview.min.js"></script>*@
+    <script src="~/Scripts/index.js"></script>
+    <script>
+        $(function () {
+            $('#defaultForm').bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                }
+            });
+        });
+    </script>
+ 
+</head>
+<body>
+    <div class="panel">
+        <div class="panel-body">
+            @RenderBody()
+        </div>
+    </div>
+
+</body>
+</html>

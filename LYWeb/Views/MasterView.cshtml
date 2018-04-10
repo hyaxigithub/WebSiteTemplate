@@ -1,0 +1,246 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>XXXX管理平台</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Scripts/plugins/font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/AdminLTE.min.css">
+    <link rel="stylesheet" href="~/Content/skins/skin-blue.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Scripts/plugins/font-awesome-4.6.3/fonts/fontawesome-webfont.svg">
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!--模式对话框-->
+    <script src="~/Scripts/bootstrap3-dialog-master/dist/js/bootstrap-dialog.min.js"></script>
+    <link href="~/Scripts/bootstrap3-dialog-master/dist/css/bootstrap-dialog.min.css" rel="stylesheet" />
+    <script src="~/Scripts/app.min.js"></script>
+    <script src="~/Scripts/layer/layer.js"></script>
+
+    <script src="~/Scripts/index.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .min80col {
+            min-width: 80px;
+        }
+
+        .min100col {
+            min-width: 100px;
+        }
+
+        .box-title > a, .box-title > button[class=btn] {
+            color: #000;
+            position: absolute;
+            top: 10px;
+            z-index: 999;
+        }
+
+        .td-text {
+            text-align: center;
+        }
+
+        .modal-dialog {
+            position: relative;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <form>
+        <div class="wrapper">
+            <header class="main-header">
+                <a class="logo">
+                    <span class="logo-mini"><b>Y</b></span>
+                    <span class="logo-lg"><b>xxx目管理</b></span>
+                </a>
+                <nav class="navbar navbar-static-top">
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">切换导航</span>
+                    </a>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="/AdminManage/Index" title="首页" target="_self">首页</a>
+                            </li>
+
+                            <li style="background:#E5104D;display:none;">
+                                <a href="javascript:writeWorkLog();" title="写日志">写日志</a>
+                            </li>
+                            <li class="dropdown messages-menu full-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-commenting-o"></i>
+                                    <span class="label label-success">0</span>
+                                </a>
+                                <ul class="dropdown-menu full">
+                                    <li class="header">你有<b>0</b>条系统通知</li>
+                                    <li>
+                                        <ul class="menu"></ul>
+                                    </li>
+                                    <li data-module="系统通知" class="footer m-entryway">
+                                        <a href="#">查看所有系统通知</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    @*<img src="#" class="user-image" alt="头像">*@
+                                    <span class="hidden-xs">管理员</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="user-header">
+                                        <a href="#" title="进入个人中心">
+                                            <img src="#" class="img-circle" alt="头像">
+                                        </a>
+                                        <p>学生姓名-学生系别-学生班别</p>
+                                    </li>
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="javascript:openDialog('修改密码','Edit_User/ExchangePwd.aspx');" class="btn btn-default btn-flat login-change">修改密码</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <asp:Button id="btReset" CssClass="btn btn-default btn-flat login-Cancellation" runat="server" Text="注销" OnClientClick="if(!confirm('您确定要注销吗？'))return false;" onclick="btReset_Click" TabIndex="99"></asp:Button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" data-toggle="control-sidebar" title="设置"><i class="fa fa-gears"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <aside class="main-sidebar">
+                <section class="sidebar">
+                    <div class="user-panel">
+
+                        <div class="pull-left info">
+                            <p>xxx项目管理</p>
+                            <p style="color:orange">负责人：xxxx</p>
+
+                        </div>
+                    </div>
+                    <!--搜索栏-->
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索你要做的事">
+                        <span class="input-group-btn">
+                            <button class="btn"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                    <ul class="treeview-menu"></ul>
+                    <ul class="sidebar-menu">
+                        <li class="header">侧边导航</li>
+                        <li class="treeview">
+
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-tags"></i>
+                                <span>网站管理</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-tag"></i>内容管理
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li data-module="网站设置" class="m-entryway">
+                                            <a href="#" target="_self"><i class="fa fa-star-o"></i> 网站设置</a>
+                                        </li>
+                                        <li data-module="新闻管理" class="m-entryway">
+                                            <a href="/Articles/NewsList" target="_self"><i class="fa fa-star-o"></i> 新闻管理</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-tag"></i>工程管理
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li data-module="项目管理" class="m-entryway">
+                                            <a href="#" target="_self"><i class="fa fa-star-o"></i> 项目管理</a>
+                                        </li>
+                                        <li data-module="产品管理" class="m-entryway">
+                                            <a href="#" target="_self"><i class="fa fa-star-o"></i> 产品管理</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-tags"></i>
+                                <span>调查问卷</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li data-module="建材市场问卷" class="m-entryway">
+                                    <a href="#" target="_blank"><i class="fa fa-star-o"></i> 建材市场问卷调查</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-heart-o"></i>
+                                <span>使用帮助</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </aside>
+
+            <div class="content-wrapper">
+                <div data-module="default" class="content-box activeModule">
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- 页面底部内容，以模板引入，方便修改 -->
+            <footer class="main-footer template" data-template="footer">
+                <div class="pull-right hidden-xs"><b>版本</b> 1.0.1</div>
+                <strong>Copyright &copy; @DateTime.Now.Year <a href="http://www.baidu.com">shuancey</a></strong>XXX工作室
+            </footer>
+            <!-- /页面底部内容 -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <div class="tab-content">
+                    <div class="tab-pane" id="control-sidebar-settings-tab" style="display: block;">
+                        <h3 class="control-sidebar-heading">功能暂不开放，敬请期待</h3>
+                    </div>
+                </div>
+            </aside>
+            <div class="control-sidebar-bg"></div>
+        </div>
+        @*<div id="cover">
+                <div id="logPanel" class="jalendar"></div>
+                <div id="mask"></div>
+            </div>
+            <div id="personal"></div>*@
+    </form>
+
+</body>
+</html>

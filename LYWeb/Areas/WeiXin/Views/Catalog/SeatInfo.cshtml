@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewBag.Title = "SeatInfo";
+    Layout = "~/Areas/WeiXin/Views/Shared/_Layout.cshtml";
+}
+        <style>
+            .head {
+                line-height: 40px;
+                background-color: #FEB930;
+                color: white;
+                font-weight: bold;
+            }
+
+            a:hover {
+                text-decoration: none;
+            }
+
+            body {
+                background-color: #F8F8F8;
+            }
+        </style>
+        <div id="page_1">
+            <div style="padding:10px;color:#5373EE">请认真核对信息</div>
+            <form class="mui-input-group">
+                <div class="mui-input-row">
+                    <label style="width:30%">节目名称</label>
+                    <input type="text" value="怀化阳戏大剧院《睡美人》1月1号下午16:30—18:00" disabled class="mui-input-clear" style="width:70%">
+                </div>
+                <div class="mui-input-row" style="height:auto">
+                    <label style="width:30%">剧场信息</label>
+                    <div style="float:right;width:70%;padding:8px 11px 11px 0px;color:#B5B5B5">
+                        阳戏大剧院
+                    </div>
+                </div>
+                <div class="mui-input-row">
+                    <label style="width:30%">演出时间</label>
+                    <div style="float:right;width:70%;padding:8px 11px 11px 0px;color:#B5B5B5">
+                        2018-01-01 16:30-18:00
+                    </div>
+                </div>
+            </form>
+            <div style="padding:10px 15px;background-color: white;margin-top:10px">
+                <div style="height:20px;width:30%;font-weight: bold">取票方式</div>
+                <div style="height:20px;margin:-20px 0px 0px auto;width:20px;text-align: center">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+                <div id="delivery_mode_text" style="margin:-20px 20px 0px 30%;min-height: 20px" onclick="sel_delivery_mode()">
+                    现场取票
+                </div>
+            </div>
+            <link rel="stylesheet" href="http://weixin.l43.cn/app/resource/components/datepicker/mui.picker.all.css" />
+            <script type="text/javascript" src="http://weixin.l43.cn/app/resource/components/datepicker/mui.picker.all.js"></script>
+            <script>
+    var picker = new mui.PopPicker();
+    var delivery_mode = '0';
+    picker.setData([{value:'0',text:'现场取票'},{value:'1',text:'自提'},]);
+    function sel_delivery_mode() {
+        picker.show(function (selectItems) {
+            delivery_mode = selectItems[0].value;
+            $("#delivery_mode_text").html(selectItems[0].text);
+        })
+    }
+            </script>
+            <div>
+                <ul class="mui-table-view mui-table-view-radio">
+                    <li value="0" class="mui-table-view-cell">
+                        <a class="mui-navigate-right">余额支付</a>
+                    </li>
+                    <li value="1" class="mui-table-view-cell mui-selected">
+                        <a class="mui-navigate-right">微信支付</a>
+                    </li>
+                </ul>
+            </div>
+            <div style="height:150px"></div>
+            <script>
+                $('.mui-bar.mui-bar-tab').css("display", "none");
+    var list = document.querySelector('.mui-table-view.mui-table-view-radio');
+    var pay_mode = '1';
+    list.addEventListener('selected',function(e){
+        pay_mode = e.detail.el.value;
+    });
+            </script>
+            <div style="position: fixed;bottom:0px;width:100%;background-color: white">
+                <div style="height:30px;line-height: 30px;margin:0px 10px">
+                    订单价格：¥138.00
+                </div>
+                <div style="height:30px;line-height: 30px;margin:0px 10px">
+                    需支付：¥138.00
+                </div>
+                <form id="pay_form" action="./index.php?i=23&c=mc&a=cash&do=wechat&" method="post">
+                    <input type="hidden" name="params" value="eyJ0aWQiOiIyMDE3MTIyNjE2Mjc0MDAwMDAwIiwib3JkZXJzbiI6IjIwMTcxMjI2MTYyNzQwMDAwMDAiLCJ0aXRsZSI6Ilx1ODI4Mlx1NzZlZVx1OTg4NFx1OGJhMlx1ZmYxYTEzOC4wMFx1NTE0MyIsImZlZSI6IjEzOC4wMCIsInVzZXIiOiIiLCJtb2R1bGUiOiJuYXZsYW5nZV9yZXNlcnZlX3Nob3cifQ==" />
+                    <input type="hidden" name="code" value="" />
+                    <input type="hidden" name="coupon_id" value="" />
+                </form>
+                <div style="margin:0px 10px">
+                    <button type="button" class="mui-btn mui-btn-block mui-disabled js-wechat-pay" style="background-color: #5373EE;color:white">立即支付</button>
+                </div>
+            </div>
+            <script>
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        $('.js-wechat-pay').removeClass('mui-disabled');
+        $('.js-wechat-pay').click(function(){
+                            pay();
+                    });
+    });
+    function pay() {
+        if(pay_mode == 1) {
+            $("#pay_form").submit();
+        } else if (pay_mode == 0) {
+            $.post("./index.php?i=23&c=entry&op=deposit_pay&do=pay&m=navlange_reserve_show",{
+                    id:363                },
+                function(resp) {
+                    resp = $.parseJSON(resp);
+                    if(resp.message.errno == 0) {
+                        mui.alert("支付成功！",function(){
+                           location.href="./index.php?i=23&c=entry&do=order&m=navlange_reserve_show";
+                        })
+                    } else {
+                        if (resp.message.message == 'NOT_ENOUGH') {
+                            mui.alert("余额不足！");
+                        } else {
+                            mui.alert("支付失败！");
+                        }
+                    }
+                }
+            );
+        } else if (pay_mode == 8) {
+            $.post("./index.php?i=23&c=entry&op=member_pay&do=pay&m=navlange_reserve_show",{
+                    id:363                },function(resp) {
+                    resp = $.parseJSON(resp);
+                    if(resp.message.errno == 0) {
+                        mui.alert("支付成功！",function(){
+                           location.href="./index.php?i=23&c=entry&do=order&m=navlange_reserve_show";
+                        })
+                    } else {
+                        var info = resp.message.message;
+                        if(info == 'NON_MEMBER') {
+                            mui.alert("非计次会员！");
+                        } else if (info == 'NON_LEFT_AMOUNT') {
+                            mui.alert("会员次数已用完！");
+                        }  else if (info == 'NON_PRIVILEGE') {
+                            mui.alert("您的会员等级不支持预订当前座位数量！");
+                        }
+                    }
+                }
+            );
+        }
+    }
+            </script>
+        </div>
+

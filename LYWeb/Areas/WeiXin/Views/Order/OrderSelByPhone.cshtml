@@ -1,0 +1,122 @@
+﻿@{
+    Layout = "~/Areas/WeiXin/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+    <!-- Header -->
+    <header data-am-widget="header" class="am-header am-text-defalut">
+        <div class="am-header-left am-header-nav ">
+            <a href="javascript: history.back(-1);" class="">
+                <i class="am-header-icon am-icon-chevron-left"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title">查询订单</h1>
+        <div class="am-header-right am-header-nav">
+            <a href="/Mobile/Index/">
+                <i class="am-header-icon am-icon-home"></i>
+            </a>
+        </div>
+    </header>
+    <!-- form -->
+    <form class="am-form am-select-form-m" action="/Mobile/Index/queryOrders.html">
+        <div class="am-form-group">
+            <label for="mobile" class="am-form-label">手机号</label>
+            <input type="text" id="mobile" name="mobile" placeholder="输入你的手机号">
+        </div>
+        <!--div class="am-form-group">
+            <label for="valid_code_pic" class="am-form-label">校验码</label>
+            <div class="am-input-group">
+                <input type="text" class="am-form-field" id="valid_code_pic" name="verify_pic"
+                placeholder="输入右边的校验码">
+                <span class="am-input-group-label">
+                    <img src="/Mobile/Index/getImagecode.html" id="valid_code_pic_img" alt="校验码">
+                </span>
+            </div>
+        </div-->
+        <div class="am-form-group">
+            <label for="valid_code_sms" class="am-form-label">验证码</label>
+            <div class="am-input-group">
+                <input type="text" class="am-form-field" id="valid_code_sms" name="verify"
+                       placeholder="输入手机收到的验证码">
+                <span class="am-input-group-btn">
+                    <button class="am-btn am-btn-default" type="button" id="send_code">
+                        <span id="send_interval">
+                        </span>
+                        <span id="send_content">
+                            发送验证码
+                        </span>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="am-form-group am-align-center">
+            <button type="submit" class="am-btn am-btn-defalut am-btn-block" id="submit" style="margin-bottom: 1rem;" disabled>
+                查询订单
+            </button>
+            <a href="/Mobile/Index/codeSelect.html" style="color: #0e90d2;text-decoration: underline;">
+                使用码号查询
+            </a>
+        </div>
+    </form>
+    <script>
+        $('#valid_code_pic_img').bind('click',function(e) {
+            this.src = '/Mobile/Index/getImagecode.html?t=' + Math.random();
+        });
+
+        var code_status = 0;
+        var send_interval = function () {
+            send_interval.second = send_interval.second || 0;
+            send_interval.second++;
+            $("#send_interval").html('(' + send_interval.second + ')');
+            if (send_interval.second == 1) $("#send_content").html('短信已发送');
+        }
+
+        $('#send_code').bind('click', function(e) {
+            var mobile = $('#mobile').val();
+           // var verify = $('#valid_code_pic').val();
+
+            if (!mobile)
+                return alert('请输入手机号') || $('#mobile').focus();
+
+            //if (!verify)
+              //  return alert('请输入校验码') || $('#valid_code_pic').focus();
+
+            if (!mobile.match(/^((1[2-8])[0-9]{9})$/))
+                return alert('手机号有误，请重新输入') || $('#mobile').focus();
+
+            //发短信
+            this.disabled = true;
+            var Interval_Id = setInterval(send_interval, 1000);
+            var resetInterval = function(argument) {
+                $('#valid_code_pic_img').click();
+                clearInterval(Interval_Id);
+                send_interval.second = 0;
+                $("#send_interval").html('');
+                $("#send_content").html('再次发送');
+                $("#send_code").removeAttr('disabled');
+            }
+
+            $.post('/Mobile/Index/getdentify.json', {
+                mobile: mobile,
+                //verify_pic: verify
+            },
+            function(data) {
+                if (!data.success) {
+                    alert(data.g_err == 100402 ? '校验码错误，请重新输入': data.message);
+                    //重置
+                    resetInterval();
+                } else {
+                    $("#submit").removeAttr('disabled');
+                    $("#submit").addClass('am-btn-warning');
+                }
+            },
+            'json');
+
+            setTimeout(function() {
+                resetInterval();
+
+            },
+            60000);
+        });
+    </script>
+

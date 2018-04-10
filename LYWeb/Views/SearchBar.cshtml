@@ -1,0 +1,16 @@
+﻿<div style="position:absolute;top:3px;width:70%;maz-index:0;margin-left:15%;">
+    <!--搜索框-->
+    <center >
+        <div class="input-group" style="width:50%;">
+            <input id="search" type="text" class="form-control" placeholder="查找..."
+                   onkeydown="enterSumbit()" value="@Request.QueryString["s"]">
+            <span class="input-group-btn">
+                <button class="btn btn-default bg-gray" type="button" onclick="doSearch()">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+      
+        </div>
+
+    </center>
+</div><!--/搜索框-->

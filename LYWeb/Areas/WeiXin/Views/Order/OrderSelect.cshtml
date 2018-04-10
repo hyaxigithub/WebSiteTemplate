@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = "~/Areas/WeiXin/Views/Shared/_Layout.cshtml";
+}
+    <style>
+        body {
+            background-color: #F6F5FA;
+        }
+
+        .mui-segmented-control .mui-control-item.mui-active {
+            color: #fff;
+            background-color: #ff0000;
+        }
+
+        .mui-segmented-control .mui-control-item {
+            border-left: 1px #ff0000 solid;
+            color: #ff0000;
+        }
+
+        .mui-segmented-control {
+            border: 1px #ff0000 solid;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-arrowleft mui-pull-left mui-plus-visble" href="javascript:history.go(-1)"></a>
+        <a class="mui-icon mui-icon-phone mui-pull-right"></a>
+        <h1 class="mui-title">我的订单</h1>
+    </header>
+    <div style="height:44px"></div>
+    <div style="padding: 10px 10px;">
+        <div id="segmentedControl" class="mui-segmented-control">
+            <a class="mui-control-item mui-active" href="./index.php?i=23&c=entry&status=-1&do=order&m=navlange_reserve_show">
+                全部
+            </a>
+            <a class="mui-control-item " href="./index.php?i=23&c=entry&status=0&do=order&m=navlange_reserve_show">
+                待支付
+            </a>
+            <a class="mui-control-item " href="./index.php?i=23&c=entry&status=1&do=order&m=navlange_reserve_show">
+                待使用
+            </a>
+        </div>
+    </div>
+    <div style="height:50px"></div>
+    <script>
+        $(function () {
+            $('#muil3').addClass("mui-tab-item mui-active");
+        })
+function info(id) {
+	window.location.href="./index.php?i=23&c=entry&do=info&m=navlange_reserve_show" + "&id="+id;
+}
+function pay(id) {
+	window.location.href="./index.php?i=23&c=entry&do=pay&m=navlange_reserve_show" + "&id="+id;
+}
+function cancel(id) {
+	var btnArray = ['取消','确认'];
+	mui.confirm('确认取消预订！','',btnArray,function(e){
+		if(e.index == 1) {
+			$.post("./index.php?i=23&c=entry&op=cancel&do=order&m=navlange_reserve_show",{id:id},
+				function(resp) {
+					resp = $.parseJSON(resp);
+					if(resp.message.errno == 0) {
+						alert("订单已取消！");
+						location.reload();
+					}
+				}
+			);
+		}
+	})
+}
+    </script>

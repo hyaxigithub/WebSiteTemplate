@@ -1,0 +1,1453 @@
+﻿
+@{
+    Layout = "~/Areas/WeiXin/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" href="~/Lib/jquery.seat-charts.css" type="text/css" />
+<style>
+    body {
+        background-color: #F3F3F3;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    div.seatCharts-cell {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+
+    div.seatCharts-space {
+        background-color: #F3F3F3;
+        color: black;
+    }
+
+    .seatCharts-header {
+        text-align: center;
+        line-height: 50px;
+    }
+
+    div.seatCharts-seat.selected {
+        background-color: #3A5FCD;
+    }
+
+    div.seatCharts-seat.available {
+        background-color: #9E9E9E;
+    }
+</style>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-icon mui-icon-arrowleft mui-pull-left mui-plus-visble" href="javascript:history.go(-1)"></a>
+    <h1 class="mui-title">万山大剧场</h1>
+</header>
+<div style="position:fixed;top:44px;height:82px;width:100%;background-color: white;padding:20px;z-index:1000">
+    <div>铜仁万山大剧院《白雪公主》12月31日下午14:20-15:50 </div>
+    <div>2017-12-31 14:20-15:50</div>
+</div>
+<div style="height:126px"></div>
+<div id="panel" style="overflow-x:scroll">
+    <div id="intro_panel" style="text-align: center;margin-top:10px">
+        <span class="label" style="background-color: #20124d">&#12288;</span>&nbsp;VIP互动区&#12288;
+        <span class="label" style="background-color: #3A5FCD">&#12288;</span>&nbsp;选中&#12288;
+        <span class="label" style="background-color: red">&#12288;</span>&nbsp;已被选&#12288;
+    </div>
+    <div id="seat-map"></div>
+</div>
+<div style="height:120px"></div>
+<div style="position:fixed;bottom:0px;width:100%;padding:10px 10px 0px 10px;background-color: white">
+    <div>已选座位</div>
+    <div id="selected_seat" style="padding:5px 0px;min-height:40px">
+
+    </div>
+    <div style="border-top:1px #F3F3F3 solid;">
+        <div style="height:43px;margin:0px 100px 0px 0px">
+            <div style="color:#ff0000">
+                <div><i class="fa fa-cny"></i><span id="price">0</span></div>
+            </div>
+            <!--div style="font-size:12px;color:grey">
+                178.00&nbsp;X&nbsp;<span id="amount">0</span>
+            </div-->
+        </div>
+        <div style="height:43px;margin:-43px 0px 0px auto;width:100px;text-align: center;padding-top:5px">
+            <button type="button" class="mui-btn mui-btn-warning" onclick="confirm()">确认选座</button>
+        </div>
+    </div>
+</div>
+<script src="~/Lib/Js/jquery.seat-charts.min.js"></script>
+<script src="~/Lib/Js/array.js"></script>
+<script src="~/Lib/Js/map.js"></script>
+<script>
+
+    var selected_seat = new Array();
+    var classified_seat = new Map();
+    var sc;
+    var total_price = 0;
+    var seat_price = new Map();
+    var customer_seat = new Map();
+    $(document).ready(function () {
+        $('.mui-bar.mui-bar-tab').css("display", "none");
+        var screen_width = (33 + 1) * 36 + 10;
+        $("#panel").css('width', screen_width);
+        $("#intro_panel").css('width', screen_width);
+        $("#seat-map").css('width', screen_width);
+
+        sc = $('#seat-map').seatCharts({
+            map: [
+                                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+            ],
+            seats: {
+                a: {
+                    price: 99.99,
+                    classes: 'front-seat' //your custom CSS class
+                }
+
+            },
+            click: function () {
+                if (this.status() == 'available') {
+                    var seat = this.settings.id;
+                    $.post("SeatSelect", {
+                        seat: seat,
+                        schedule_id: 151
+                    }, function (resp) {
+                        //resp = $.parseJSON(resp);
+                        var res = resp.data;
+                        if (resp.resCode == 0) {
+                            seat_price.put(seat, parseFloat(res.price));
+                            customer_seat.put(seat, res.customer_seat);
+                            selected_seat.push(seat);
+                            if (classified_seat.get(seat) != null) {
+                                $("#" + seat).css('background-color', '#3A5FCD');
+                            }
+                            $("#selected_seat").html('');
+                            for (var i = 0; i < selected_seat.length; i++) {
+                                var seat_arr = selected_seat[i].split('_');
+                                var seat_str = customer_seat.get(selected_seat[i]);
+                                var html = '<button type="button" id="selected_seat_' + selected_seat[i] + '" onclick="cancel_seat(\'' + selected_seat[i] + '\')" style="padding:3px;border:1px #8a8a8a solid;margin-bottom:3px">' + seat_str + '&#12288;<i class="fa fa-times"></i></button>&#12288;';
+                                $("#selected_seat").append(html);
+                            }
+                            total_price += parseFloat(res.price);
+                            $("#price").html(parseFloat(total_price).toFixed(2));
+                        }
+                    }
+                    );
+                    return 'selected';
+                } else if (this.status() == 'selected') {
+                    cancel_seat(this.settings.id);
+                    if (classified_seat.get(this.settings.id) != null) {
+                        $("#" + this.settings.id).css('background-color', classified_seat.get(this.settings.id));
+                    }
+                    return 'available';
+                } else {
+                    return this.style();
+                }
+            }
+        });
+
+        //Make all available 'c' seats unavailable
+        var unavailable_seat = new Array();
+        sc.get(['3_3']).status('unavailable');
+        unavailable_seat.push('3_3');
+        sc.get(['3_7']).status('unavailable');
+        unavailable_seat.push('3_7');
+        sc.get(['1_26']).status('unavailable');
+        unavailable_seat.push('1_26');
+        sc.get(['1_33']).status('unavailable');
+        unavailable_seat.push('1_33');
+        sc.get(['6_33']).status('unavailable');
+        unavailable_seat.push('6_33');
+        sc.get(['6_32']).status('unavailable');
+        unavailable_seat.push('6_32');
+        sc.get(['5_32']).status('unavailable');
+        unavailable_seat.push('5_32');
+        sc.get(['5_33']).status('unavailable');
+        unavailable_seat.push('5_33');
+        sc.get(['4_33']).status('unavailable');
+        unavailable_seat.push('4_33');
+        sc.get(['4_32']).status('unavailable');
+        unavailable_seat.push('4_32');
+        sc.get(['6_27']).status('unavailable');
+        unavailable_seat.push('6_27');
+        sc.get(['5_27']).status('unavailable');
+        unavailable_seat.push('5_27');
+        sc.get(['5_26']).status('unavailable');
+        unavailable_seat.push('5_26');
+        sc.get(['4_27']).status('unavailable');
+        unavailable_seat.push('4_27');
+        sc.get(['3_27']).status('unavailable');
+        unavailable_seat.push('3_27');
+        sc.get(['3_26']).status('unavailable');
+        unavailable_seat.push('3_26');
+        sc.get(['2_27']).status('unavailable');
+        unavailable_seat.push('2_27');
+        sc.get(['1_7']).status('unavailable');
+        unavailable_seat.push('1_7');
+        sc.get(['2_7']).status('unavailable');
+        unavailable_seat.push('2_7');
+        sc.get(['1_1']).status('unavailable');
+        unavailable_seat.push('1_1');
+        sc.get(['1_27']).status('unavailable');
+        unavailable_seat.push('1_27');
+        sc.get(['1_28']).status('unavailable');
+        unavailable_seat.push('1_28');
+        sc.get(['1_29']).status('unavailable');
+        unavailable_seat.push('1_29');
+        sc.get(['6_7']).status('unavailable');
+        unavailable_seat.push('6_7');
+        sc.get(['5_7']).status('unavailable');
+        unavailable_seat.push('5_7');
+        sc.get(['4_7']).status('unavailable');
+        unavailable_seat.push('4_7');
+        sc.get(['6_1']).status('unavailable');
+        unavailable_seat.push('6_1');
+        sc.get(['6_2']).status('unavailable');
+        unavailable_seat.push('6_2');
+        sc.get(['6_3']).status('unavailable');
+        unavailable_seat.push('6_3');
+        sc.get(['5_3']).status('unavailable');
+        unavailable_seat.push('5_3');
+        sc.get(['5_2']).status('unavailable');
+        unavailable_seat.push('5_2');
+        sc.get(['5_1']).status('unavailable');
+        unavailable_seat.push('5_1');
+        sc.get(['4_3']).status('unavailable');
+        unavailable_seat.push('4_3');
+        sc.get(['4_2']).status('unavailable');
+        unavailable_seat.push('4_2');
+        sc.get(['4_1']).status('unavailable');
+        unavailable_seat.push('4_1');
+        sc.get(['3_1']).status('unavailable');
+        unavailable_seat.push('3_1');
+        sc.get(['3_2']).status('unavailable');
+        unavailable_seat.push('3_2');
+        sc.get(['1_32']).status('unavailable');
+        unavailable_seat.push('1_32');
+        sc.get(['1_31']).status('unavailable');
+        unavailable_seat.push('1_31');
+        sc.get(['1_30']).status('unavailable');
+        unavailable_seat.push('1_30');
+        sc.get(['1_16']).status('unavailable');
+        unavailable_seat.push('1_16');
+        sc.get(['1_17']).status('unavailable');
+        unavailable_seat.push('1_17');
+        sc.get(['1_18']).status('unavailable');
+        unavailable_seat.push('1_18');
+        sc.get(['4_17']).status('unavailable');
+        unavailable_seat.push('4_17');
+        sc.get(['2_17']).status('unavailable');
+        unavailable_seat.push('2_17');
+        sc.get(['2_21']).status('unavailable');
+        unavailable_seat.push('2_21');
+        sc.get(['2_20']).status('unavailable');
+        unavailable_seat.push('2_20');
+        sc.get(['3_12']).status('unavailable');
+        unavailable_seat.push('3_12');
+        sc.get(['1_15']).status('unavailable');
+        unavailable_seat.push('1_15');
+        sc.get(['2_16']).status('unavailable');
+        unavailable_seat.push('2_16');
+        sc.get(['2_15']).status('unavailable');
+        unavailable_seat.push('2_15');
+        sc.get(['2_18']).status('unavailable');
+        unavailable_seat.push('2_18');
+        sc.get(['2_19']).status('unavailable');
+        unavailable_seat.push('2_19');
+        sc.get(['1_13']).status('unavailable');
+        unavailable_seat.push('1_13');
+        sc.get(['1_14']).status('unavailable');
+        unavailable_seat.push('1_14');
+        sc.get(['3_16']).status('unavailable');
+        unavailable_seat.push('3_16');
+        sc.get(['3_17']).status('unavailable');
+        unavailable_seat.push('3_17');
+        sc.get(['4_15']).status('unavailable');
+        unavailable_seat.push('4_15');
+        sc.get(['4_16']).status('unavailable');
+        unavailable_seat.push('4_16');
+        sc.get(['4_19']).status('unavailable');
+        unavailable_seat.push('4_19');
+        sc.get(['4_18']).status('unavailable');
+        unavailable_seat.push('4_18');
+        sc.get(['3_18']).status('unavailable');
+        unavailable_seat.push('3_18');
+        sc.get(['3_19']).status('unavailable');
+        unavailable_seat.push('3_19');
+        sc.get(['3_15']).status('unavailable');
+        unavailable_seat.push('3_15');
+        sc.get(['3_14']).status('unavailable');
+        unavailable_seat.push('3_14');
+        sc.get(['4_14']).status('unavailable');
+        unavailable_seat.push('4_14');
+        sc.get(['4_13']).status('unavailable');
+        unavailable_seat.push('4_13');
+        sc.get(['2_13']).status('unavailable');
+        unavailable_seat.push('2_13');
+        sc.get(['2_14']).status('unavailable');
+        unavailable_seat.push('2_14');
+        classified_seat.put('1_2', '#20124d');
+        if (!in_array(unavailable_seat, '1_2')) {
+            sc.get(['1_2']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_3', '#20124d');
+        if (!in_array(unavailable_seat, '1_3')) {
+            sc.get(['1_3']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_4', '#20124d');
+        if (!in_array(unavailable_seat, '1_4')) {
+            sc.get(['1_4']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_5', '#20124d');
+        if (!in_array(unavailable_seat, '1_5')) {
+            sc.get(['1_5']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_6', '#20124d');
+        if (!in_array(unavailable_seat, '1_6')) {
+            sc.get(['1_6']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_1', '#20124d');
+        if (!in_array(unavailable_seat, '2_1')) {
+            sc.get(['2_1']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_2', '#20124d');
+        if (!in_array(unavailable_seat, '2_2')) {
+            sc.get(['2_2']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_3', '#20124d');
+        if (!in_array(unavailable_seat, '2_3')) {
+            sc.get(['2_3']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_4', '#20124d');
+        if (!in_array(unavailable_seat, '2_4')) {
+            sc.get(['2_4']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_6', '#20124d');
+        if (!in_array(unavailable_seat, '2_6')) {
+            sc.get(['2_6']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_5', '#20124d');
+        if (!in_array(unavailable_seat, '2_5')) {
+            sc.get(['2_5']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_4', '#20124d');
+        if (!in_array(unavailable_seat, '3_4')) {
+            sc.get(['3_4']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_6', '#20124d');
+        if (!in_array(unavailable_seat, '3_6')) {
+            sc.get(['3_6']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_5', '#20124d');
+        if (!in_array(unavailable_seat, '3_5')) {
+            sc.get(['3_5']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_4', '#20124d');
+        if (!in_array(unavailable_seat, '4_4')) {
+            sc.get(['4_4']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_5', '#20124d');
+        if (!in_array(unavailable_seat, '4_5')) {
+            sc.get(['4_5']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_6', '#20124d');
+        if (!in_array(unavailable_seat, '4_6')) {
+            sc.get(['4_6']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_4', '#20124d');
+        if (!in_array(unavailable_seat, '5_4')) {
+            sc.get(['5_4']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_5', '#20124d');
+        if (!in_array(unavailable_seat, '5_5')) {
+            sc.get(['5_5']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_6', '#20124d');
+        if (!in_array(unavailable_seat, '5_6')) {
+            sc.get(['5_6']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_4', '#20124d');
+        if (!in_array(unavailable_seat, '6_4')) {
+            sc.get(['6_4']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_5', '#20124d');
+        if (!in_array(unavailable_seat, '6_5')) {
+            sc.get(['6_5']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_6', '#20124d');
+        if (!in_array(unavailable_seat, '6_6')) {
+            sc.get(['6_6']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_8', '#20124d');
+        if (!in_array(unavailable_seat, '1_8')) {
+            sc.get(['1_8']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_9', '#20124d');
+        if (!in_array(unavailable_seat, '1_9')) {
+            sc.get(['1_9']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_10', '#20124d');
+        if (!in_array(unavailable_seat, '1_10')) {
+            sc.get(['1_10']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_12', '#20124d');
+        if (!in_array(unavailable_seat, '1_12')) {
+            sc.get(['1_12']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_11', '#20124d');
+        if (!in_array(unavailable_seat, '1_11')) {
+            sc.get(['1_11']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_13', '#20124d');
+        if (!in_array(unavailable_seat, '1_13')) {
+            sc.get(['1_13']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_14', '#20124d');
+        if (!in_array(unavailable_seat, '1_14')) {
+            sc.get(['1_14']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_15', '#20124d');
+        if (!in_array(unavailable_seat, '1_15')) {
+            sc.get(['1_15']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_16', '#20124d');
+        if (!in_array(unavailable_seat, '1_16')) {
+            sc.get(['1_16']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_17', '#20124d');
+        if (!in_array(unavailable_seat, '1_17')) {
+            sc.get(['1_17']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_18', '#20124d');
+        if (!in_array(unavailable_seat, '1_18')) {
+            sc.get(['1_18']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_19', '#20124d');
+        if (!in_array(unavailable_seat, '1_19')) {
+            sc.get(['1_19']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_20', '#20124d');
+        if (!in_array(unavailable_seat, '1_20')) {
+            sc.get(['1_20']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_21', '#20124d');
+        if (!in_array(unavailable_seat, '1_21')) {
+            sc.get(['1_21']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_22', '#20124d');
+        if (!in_array(unavailable_seat, '1_22')) {
+            sc.get(['1_22']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_23', '#20124d');
+        if (!in_array(unavailable_seat, '1_23')) {
+            sc.get(['1_23']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_7', '#20124d');
+        if (!in_array(unavailable_seat, '2_7')) {
+            sc.get(['2_7']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_7', '#20124d');
+        if (!in_array(unavailable_seat, '1_7')) {
+            sc.get(['1_7']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_8', '#20124d');
+        if (!in_array(unavailable_seat, '2_8')) {
+            sc.get(['2_8']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_8', '#20124d');
+        if (!in_array(unavailable_seat, '3_8')) {
+            sc.get(['3_8']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_8', '#20124d');
+        if (!in_array(unavailable_seat, '4_8')) {
+            sc.get(['4_8']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_8', '#20124d');
+        if (!in_array(unavailable_seat, '5_8')) {
+            sc.get(['5_8']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_8', '#20124d');
+        if (!in_array(unavailable_seat, '6_8')) {
+            sc.get(['6_8']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_9', '#20124d');
+        if (!in_array(unavailable_seat, '2_9')) {
+            sc.get(['2_9']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_9', '#20124d');
+        if (!in_array(unavailable_seat, '3_9')) {
+            sc.get(['3_9']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_9', '#20124d');
+        if (!in_array(unavailable_seat, '4_9')) {
+            sc.get(['4_9']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_9', '#20124d');
+        if (!in_array(unavailable_seat, '5_9')) {
+            sc.get(['5_9']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_9', '#20124d');
+        if (!in_array(unavailable_seat, '6_9')) {
+            sc.get(['6_9']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_10', '#20124d');
+        if (!in_array(unavailable_seat, '2_10')) {
+            sc.get(['2_10']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_10', '#20124d');
+        if (!in_array(unavailable_seat, '3_10')) {
+            sc.get(['3_10']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_10', '#20124d');
+        if (!in_array(unavailable_seat, '4_10')) {
+            sc.get(['4_10']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_10', '#20124d');
+        if (!in_array(unavailable_seat, '5_10')) {
+            sc.get(['5_10']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_10', '#20124d');
+        if (!in_array(unavailable_seat, '6_10')) {
+            sc.get(['6_10']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_11', '#20124d');
+        if (!in_array(unavailable_seat, '2_11')) {
+            sc.get(['2_11']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_11', '#20124d');
+        if (!in_array(unavailable_seat, '3_11')) {
+            sc.get(['3_11']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_11', '#20124d');
+        if (!in_array(unavailable_seat, '4_11')) {
+            sc.get(['4_11']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_11', '#20124d');
+        if (!in_array(unavailable_seat, '5_11')) {
+            sc.get(['5_11']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_11', '#20124d');
+        if (!in_array(unavailable_seat, '6_11')) {
+            sc.get(['6_11']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_12', '#20124d');
+        if (!in_array(unavailable_seat, '2_12')) {
+            sc.get(['2_12']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_12', '#20124d');
+        if (!in_array(unavailable_seat, '3_12')) {
+            sc.get(['3_12']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_12', '#20124d');
+        if (!in_array(unavailable_seat, '4_12')) {
+            sc.get(['4_12']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_12', '#20124d');
+        if (!in_array(unavailable_seat, '5_12')) {
+            sc.get(['5_12']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_12', '#20124d');
+        if (!in_array(unavailable_seat, '6_12')) {
+            sc.get(['6_12']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_13', '#20124d');
+        if (!in_array(unavailable_seat, '2_13')) {
+            sc.get(['2_13']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_13', '#20124d');
+        if (!in_array(unavailable_seat, '3_13')) {
+            sc.get(['3_13']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_13', '#20124d');
+        if (!in_array(unavailable_seat, '5_13')) {
+            sc.get(['5_13']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_13', '#20124d');
+        if (!in_array(unavailable_seat, '4_13')) {
+            sc.get(['4_13']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_13', '#20124d');
+        if (!in_array(unavailable_seat, '6_13')) {
+            sc.get(['6_13']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_14', '#20124d');
+        if (!in_array(unavailable_seat, '6_14')) {
+            sc.get(['6_14']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_14', '#20124d');
+        if (!in_array(unavailable_seat, '5_14')) {
+            sc.get(['5_14']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_14', '#20124d');
+        if (!in_array(unavailable_seat, '4_14')) {
+            sc.get(['4_14']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_14', '#20124d');
+        if (!in_array(unavailable_seat, '3_14')) {
+            sc.get(['3_14']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_14', '#20124d');
+        if (!in_array(unavailable_seat, '2_14')) {
+            sc.get(['2_14']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_15', '#20124d');
+        if (!in_array(unavailable_seat, '2_15')) {
+            sc.get(['2_15']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_15', '#20124d');
+        if (!in_array(unavailable_seat, '3_15')) {
+            sc.get(['3_15']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_15', '#20124d');
+        if (!in_array(unavailable_seat, '4_15')) {
+            sc.get(['4_15']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_15', '#20124d');
+        if (!in_array(unavailable_seat, '6_15')) {
+            sc.get(['6_15']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_15', '#20124d');
+        if (!in_array(unavailable_seat, '5_15')) {
+            sc.get(['5_15']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_16', '#20124d');
+        if (!in_array(unavailable_seat, '2_16')) {
+            sc.get(['2_16']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_16', '#20124d');
+        if (!in_array(unavailable_seat, '3_16')) {
+            sc.get(['3_16']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_16', '#20124d');
+        if (!in_array(unavailable_seat, '4_16')) {
+            sc.get(['4_16']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_16', '#20124d');
+        if (!in_array(unavailable_seat, '5_16')) {
+            sc.get(['5_16']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_16', '#20124d');
+        if (!in_array(unavailable_seat, '6_16')) {
+            sc.get(['6_16']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_17', '#20124d');
+        if (!in_array(unavailable_seat, '6_17')) {
+            sc.get(['6_17']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_17', '#20124d');
+        if (!in_array(unavailable_seat, '5_17')) {
+            sc.get(['5_17']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_17', '#20124d');
+        if (!in_array(unavailable_seat, '4_17')) {
+            sc.get(['4_17']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_17', '#20124d');
+        if (!in_array(unavailable_seat, '3_17')) {
+            sc.get(['3_17']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_17', '#20124d');
+        if (!in_array(unavailable_seat, '2_17')) {
+            sc.get(['2_17']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_18', '#20124d');
+        if (!in_array(unavailable_seat, '2_18')) {
+            sc.get(['2_18']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_18', '#20124d');
+        if (!in_array(unavailable_seat, '3_18')) {
+            sc.get(['3_18']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_18', '#20124d');
+        if (!in_array(unavailable_seat, '4_18')) {
+            sc.get(['4_18']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_18', '#20124d');
+        if (!in_array(unavailable_seat, '5_18')) {
+            sc.get(['5_18']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_18', '#20124d');
+        if (!in_array(unavailable_seat, '6_18')) {
+            sc.get(['6_18']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_19', '#20124d');
+        if (!in_array(unavailable_seat, '6_19')) {
+            sc.get(['6_19']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_19', '#20124d');
+        if (!in_array(unavailable_seat, '5_19')) {
+            sc.get(['5_19']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_19', '#20124d');
+        if (!in_array(unavailable_seat, '4_19')) {
+            sc.get(['4_19']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_19', '#20124d');
+        if (!in_array(unavailable_seat, '3_19')) {
+            sc.get(['3_19']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_19', '#20124d');
+        if (!in_array(unavailable_seat, '2_19')) {
+            sc.get(['2_19']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_20', '#20124d');
+        if (!in_array(unavailable_seat, '2_20')) {
+            sc.get(['2_20']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_20', '#20124d');
+        if (!in_array(unavailable_seat, '3_20')) {
+            sc.get(['3_20']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_20', '#20124d');
+        if (!in_array(unavailable_seat, '4_20')) {
+            sc.get(['4_20']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_20', '#20124d');
+        if (!in_array(unavailable_seat, '5_20')) {
+            sc.get(['5_20']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_20', '#20124d');
+        if (!in_array(unavailable_seat, '6_20')) {
+            sc.get(['6_20']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_21', '#20124d');
+        if (!in_array(unavailable_seat, '6_21')) {
+            sc.get(['6_21']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_21', '#20124d');
+        if (!in_array(unavailable_seat, '5_21')) {
+            sc.get(['5_21']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_21', '#20124d');
+        if (!in_array(unavailable_seat, '4_21')) {
+            sc.get(['4_21']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_21', '#20124d');
+        if (!in_array(unavailable_seat, '3_21')) {
+            sc.get(['3_21']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_21', '#20124d');
+        if (!in_array(unavailable_seat, '2_21')) {
+            sc.get(['2_21']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_22', '#20124d');
+        if (!in_array(unavailable_seat, '2_22')) {
+            sc.get(['2_22']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_22', '#20124d');
+        if (!in_array(unavailable_seat, '3_22')) {
+            sc.get(['3_22']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_22', '#20124d');
+        if (!in_array(unavailable_seat, '4_22')) {
+            sc.get(['4_22']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_22', '#20124d');
+        if (!in_array(unavailable_seat, '5_22')) {
+            sc.get(['5_22']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_22', '#20124d');
+        if (!in_array(unavailable_seat, '6_22')) {
+            sc.get(['6_22']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_23', '#20124d');
+        if (!in_array(unavailable_seat, '6_23')) {
+            sc.get(['6_23']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_26', '#20124d');
+        if (!in_array(unavailable_seat, '6_26')) {
+            sc.get(['6_26']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_25', '#20124d');
+        if (!in_array(unavailable_seat, '6_25')) {
+            sc.get(['6_25']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_24', '#20124d');
+        if (!in_array(unavailable_seat, '6_24')) {
+            sc.get(['6_24']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_24', '#20124d');
+        if (!in_array(unavailable_seat, '5_24')) {
+            sc.get(['5_24']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_23', '#20124d');
+        if (!in_array(unavailable_seat, '5_23')) {
+            sc.get(['5_23']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_25', '#20124d');
+        if (!in_array(unavailable_seat, '5_25')) {
+            sc.get(['5_25']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_26', '#20124d');
+        if (!in_array(unavailable_seat, '4_26')) {
+            sc.get(['4_26']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_25', '#20124d');
+        if (!in_array(unavailable_seat, '4_25')) {
+            sc.get(['4_25']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_24', '#20124d');
+        if (!in_array(unavailable_seat, '4_24')) {
+            sc.get(['4_24']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_23', '#20124d');
+        if (!in_array(unavailable_seat, '4_23')) {
+            sc.get(['4_23']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_25', '#20124d');
+        if (!in_array(unavailable_seat, '3_25')) {
+            sc.get(['3_25']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_24', '#20124d');
+        if (!in_array(unavailable_seat, '3_24')) {
+            sc.get(['3_24']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_23', '#20124d');
+        if (!in_array(unavailable_seat, '3_23')) {
+            sc.get(['3_23']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_23', '#20124d');
+        if (!in_array(unavailable_seat, '2_23')) {
+            sc.get(['2_23']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_24', '#20124d');
+        if (!in_array(unavailable_seat, '2_24')) {
+            sc.get(['2_24']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_25', '#20124d');
+        if (!in_array(unavailable_seat, '2_25')) {
+            sc.get(['2_25']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_26', '#20124d');
+        if (!in_array(unavailable_seat, '2_26')) {
+            sc.get(['2_26']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_28', '#20124d');
+        if (!in_array(unavailable_seat, '2_28')) {
+            sc.get(['2_28']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_29', '#20124d');
+        if (!in_array(unavailable_seat, '2_29')) {
+            sc.get(['2_29']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_30', '#20124d');
+        if (!in_array(unavailable_seat, '2_30')) {
+            sc.get(['2_30']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_31', '#20124d');
+        if (!in_array(unavailable_seat, '2_31')) {
+            sc.get(['2_31']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_32', '#20124d');
+        if (!in_array(unavailable_seat, '2_32')) {
+            sc.get(['2_32']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('2_33', '#20124d');
+        if (!in_array(unavailable_seat, '2_33')) {
+            sc.get(['2_33']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_33', '#20124d');
+        if (!in_array(unavailable_seat, '3_33')) {
+            sc.get(['3_33']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_32', '#20124d');
+        if (!in_array(unavailable_seat, '3_32')) {
+            sc.get(['3_32']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_31', '#20124d');
+        if (!in_array(unavailable_seat, '3_31')) {
+            sc.get(['3_31']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_30', '#20124d');
+        if (!in_array(unavailable_seat, '3_30')) {
+            sc.get(['3_30']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_29', '#20124d');
+        if (!in_array(unavailable_seat, '3_29')) {
+            sc.get(['3_29']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('3_28', '#20124d');
+        if (!in_array(unavailable_seat, '3_28')) {
+            sc.get(['3_28']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_28', '#20124d');
+        if (!in_array(unavailable_seat, '4_28')) {
+            sc.get(['4_28']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_29', '#20124d');
+        if (!in_array(unavailable_seat, '4_29')) {
+            sc.get(['4_29']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_31', '#20124d');
+        if (!in_array(unavailable_seat, '4_31')) {
+            sc.get(['4_31']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('4_30', '#20124d');
+        if (!in_array(unavailable_seat, '4_30')) {
+            sc.get(['4_30']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_31', '#20124d');
+        if (!in_array(unavailable_seat, '5_31')) {
+            sc.get(['5_31']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_30', '#20124d');
+        if (!in_array(unavailable_seat, '5_30')) {
+            sc.get(['5_30']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_29', '#20124d');
+        if (!in_array(unavailable_seat, '5_29')) {
+            sc.get(['5_29']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('5_28', '#20124d');
+        if (!in_array(unavailable_seat, '5_28')) {
+            sc.get(['5_28']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_28', '#20124d');
+        if (!in_array(unavailable_seat, '6_28')) {
+            sc.get(['6_28']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_29', '#20124d');
+        if (!in_array(unavailable_seat, '6_29')) {
+            sc.get(['6_29']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_30', '#20124d');
+        if (!in_array(unavailable_seat, '6_30')) {
+            sc.get(['6_30']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('6_31', '#20124d');
+        if (!in_array(unavailable_seat, '6_31')) {
+            sc.get(['6_31']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_1', '#20124d');
+        if (!in_array(unavailable_seat, '1_1')) {
+            sc.get(['1_1']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_26', '#20124d');
+        if (!in_array(unavailable_seat, '1_26')) {
+            sc.get(['1_26']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_24', '#20124d');
+        if (!in_array(unavailable_seat, '1_24')) {
+            sc.get(['1_24']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        classified_seat.put('1_25', '#20124d');
+        if (!in_array(unavailable_seat, '1_25')) {
+            sc.get(['1_25']).node().css({
+                'background-color': '#20124d'
+            });
+        }
+        var customer_index = new Array();
+        $(".seatCharts-header").html('银幕位置');
+
+        if (screen_width > window.screen.width) {
+            var container = $("#panel");
+            container.scrollLeft(
+                (screen_width - window.screen.width) / 2
+            );
+        }
+        $("div[id^='1_']").each(function () {
+            $(this).html('');
+        })
+        $("div[id^='2_']").each(function () {
+            $(this).html('');
+        })
+        $("div[id^='3_']").each(function () {
+            $(this).html('');
+        })
+        $("div[id^='4_']").each(function () {
+            $(this).html('');
+        })
+        $("div[id^='5_']").each(function () {
+            $(this).html('');
+        })
+        $("div[id^='6_']").each(function () {
+            $(this).html('');
+        })
+    });
+    function cancel_seat(seat) {
+        $("#selected_seat_" + seat).remove();
+        removeByValue(selected_seat, seat);
+        sc.get([seat]).status('available');
+        if (classified_seat.get(seat) != null) {
+            $("#" + seat).css('background-color', classified_seat.get(seat));
+        }
+        total_price -= seat_price.get(seat);
+        $("#price").html(parseFloat(total_price).toFixed(2));
+    }
+    function confirm() {
+        if (selected_seat.length == 0) {
+            alert("请选择座位！");
+        } else {
+            $.post("SeatConfirm", {
+                schedule_id: 151,
+                seats: selected_seat
+            }, function (resp) {
+                //resp = $.parseJSON(resp);
+                var res = resp.data;
+                if (resp.resCode == 0) {
+                    location.href = "SeatInfo?id=" + res.Id;
+                }
+            }
+            );
+        }
+    }
+
+    var requireExtend = require.config({
+        paths: {
+            'hammer': "http://localhost:63901/Lib/Js/hammer.min", //结尾不写.js
+        },
+        shim: {
+
+        }
+    });
+    requireExtend(["hammer"], function (res) {
+        var reqAnimationFrame = (function () {
+            return window[Hammer.prefixed(window, 'requestAnimationFrame')]
+        })();
+
+        var el = document.querySelector("#panel");
+        //var START_X = Math.round((screen.offsetWidth - el.offsetWidth) / 2);
+        //var START_Y = Math.round((screen.offsetHeight - el.offsetHeight) / 2);
+
+        var START_X = 0;
+        var START_Y = 0;
+
+        var ticking = false;
+        var transform;
+        var timer;
+        var mc = new Hammer.Manager(document.querySelector("#panel"));
+        mc.add(new Hammer.Pan({ threshold: 0, pointers: 0 }));
+        mc.add(new Hammer.Swipe()).recognizeWith(mc.get('pan'));
+        mc.add(new Hammer.Rotate({ threshold: 0 })).recognizeWith(mc.get('pan'));
+        mc.add(new Hammer.Pinch({ threshold: 0 })).recognizeWith([mc.get('pan'), mc.get('rotate')]);
+        var moveX = 0;
+        var moveY = 0;
+        mc.on("panstart", onPanstart);
+        mc.on("panmove", onPanmove);
+        mc.on("pinchstart pinchmove", onPinch);
+
+
+        function logEvent(ev) {
+
+        }
+
+        function resetElement() {
+            el.className = 'animate';
+            transform = {
+                translate: { x: START_X, y: START_Y },
+                scale: 1,
+                angle: 0,
+                rx: 0,
+                ry: 0,
+                rz: 0
+            };
+            requestElementUpdate();
+        }
+        resetElement();
+        function updateElementTransform() {
+            var value = [
+                 'translate3d(' + transform.translate.x + 'px, ' + transform.translate.y + 'px, 0)',
+                 'scale(' + transform.scale + ', ' + transform.scale + ')',
+                 'rotate(' + transform.angle + 'deg)'
+            ];
+            value = value.join(" ");
+            el.style.webkitTransform = value;
+            el.style.mozTransform = value;
+            el.style.transform = value;
+            ticking = false;
+        }
+
+        function requestElementUpdate() {
+            if (!ticking) {
+                reqAnimationFrame(updateElementTransform);
+                ticking = true;
+            }
+        }
+
+        //
+        var initScale = 1;
+        function onPinch(ev) {
+            ev.preventDefault();
+            if (ev.type == 'pinchstart') {
+                initScale = transform.scale || 1;
+            }
+
+            el.className = '';
+            transform.scale = initScale * ev.scale;
+
+            logEvent(ev);
+            requestElementUpdate();
+        }
+
+        var initAngle = 0;
+        var gesture_angle = 0;
+        function onRotate(ev) {
+            if (ev.type == 'rotatestart') {
+                initAngle = transform.angle || 0;
+                gesture_angle = ev.rotation;
+            }
+            el.className = '';
+            transform.rz = 1;
+            transform.angle = initAngle + ev.rotation - gesture_angle;
+            //alert(ev.type + "::" + initAngle + "::" + ev.rotation + "::" + transform.angle);
+            logEvent(ev);
+            requestElementUpdate();
+        }
+
+        //移°?动¡¥
+        var sreenWidth = window.screen.width;
+        var sreenHeight = window.screen.height;
+        var startx = 0;
+        var starty = 0;
+        var translateStr = '';
+
+        function onPanstart(ev) {
+            str = el.style.webkitTransform; //translate(50px,0px)
+            startx = parseInt(str.match(/\-?[0-9]+/g)[1]);
+            starty = parseInt(str.match(/\-?[0-9]+/g)[2]);
+        }
+
+        function onPanmove(ev) {
+            ev.preventDefault();
+            var m = startx + ev.deltaX;
+            el.className = '';
+            var movex = startx + ev.deltaX;
+            var movey = starty + ev.deltaY;
+
+            transform.translate = {
+                x: movex,
+                y: movey
+            };
+
+            logEvent(ev);
+            requestElementUpdate();
+        }
+    });
+</script>

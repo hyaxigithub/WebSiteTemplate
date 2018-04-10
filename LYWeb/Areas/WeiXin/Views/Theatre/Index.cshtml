@@ -1,0 +1,239 @@
+﻿
+@{
+    Layout = "~/Areas/WeiXin/Views/Shared/_Layout.cshtml";
+}
+<script>
+    $(function () {
+        $('#muil1').addClass("mui-tab-item mui-active");
+    })
+</script>
+    <div id="main_panel">
+        <div style="padding:5px;position: fixed;top:0px;width:100%;background-color: #ff0000;z-index: 2">
+            <div style="width:40px;height:34px;line-height: 34px;text-align: center;font-size:12px;white-space:nowrap;color:white;overflow: hidden" onclick="change_city()">
+                长沙
+            </div>
+            <div style="width:20px;height:34px;line-height: 34px;text-align: center;font-size:12px;white-space:nowrap;margin:-34px auto 0px 40px;color:white" onclick="change_city()">
+                <i class="fa fa-angle-down"></i>
+            </div>
+            <div style="margin:-34px 0px 0px 60px">
+                <form action="" method="POST">
+                    <div class="mui-input-row mui-search">
+                        <input id="key" name="key" type="search" class="mui-input-clear" placeholder="搜索节目：输入节目关键字" style="background-color: white;margin-bottom:0px" onsearch="search();return false;">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div style="height:44px"></div>
+        <link rel="stylesheet" href="~/Content/swiper.min.css">
+        <div class="mui-slider">
+            <div class="mui-slider-group mui-slider-loop">
+                <div class="mui-slider-item">
+                    <a href="{$banner_list[count($banner_list)-1]['url']}"><img width="100%" height="auto" src="http://weixin.l43.cn/attachment/images/23/2017/12/oYbiR2AuJy1NrTabRfBvZ2YPouRZIf.png" /></a>
+                </div>
+                <div class="mui-slider-item">
+                    <a href=""><img width="100%" height="auto" src="http://weixin.l43.cn/attachment/images/23/2017/12/W2dYSsSd35KBV0Z9QB9yk9q530BvtI.jpg" /></a>
+                </div>
+                <div class="mui-slider-item">
+                    <a href=""><img width="100%" height="auto" src="http://weixin.l43.cn/attachment/images/23/2017/12/eM2nnbpiN6JAnn6ID2IniuFbJUupP5.jpg" /></a>
+                </div>
+                <div class="mui-slider-item">
+                    <a href=""><img width="100%" height="auto" src="http://weixin.l43.cn/attachment/images/23/2017/12/z4wBO8b97MMpO5sb7YY94WbDPd4dB9.jpg" /></a>
+                </div>
+                <div class="mui-slider-item">
+                    <a href=""><img width="100%" height="auto" src="http://weixin.l43.cn/attachment/images/23/2017/12/D384Odv8jtj4o2vOo42nGU38J9nSz8.jpg" /></a>
+                </div>
+                <div class="mui-slider-item">
+                    <a href=""><img width="100%" height="auto" src="" /></a>
+                </div>
+                <div class="mui-slider-item">
+                    <a href=""><img width="100%" height="auto" src="http://weixin.l43.cn/attachment/images/23/2017/12/oYbiR2AuJy1NrTabRfBvZ2YPouRZIf.png" /></a>
+                </div>
+                <div class="mui-slider-item">
+                    <a href=""><img width="100%" height="auto" src="http://weixin.l43.cn/attachment/images/23/2017/12/W2dYSsSd35KBV0Z9QB9yk9q530BvtI.jpg" /></a>
+                </div>
+            </div>
+            <div class="mui-slider-indicator">
+                <div class="mui-indicator mui-active"></div>
+                <div class="mui-indicator "></div>
+                <div class="mui-indicator "></div>
+                <div class="mui-indicator "></div>
+                <div class="mui-indicator "></div>
+                <div class="mui-indicator "></div>
+            </div>
+        </div>
+        <script>
+            var gallery = mui('.mui-slider');
+            gallery.slider({
+                interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+            });
+        </script>
+
+        <div style="height:15px"></div>
+        <div style="background-color: white;padding:10px">
+            <div class="index_tag" >
+                <label style="height:22px;border-bottom:2px  solid">铜仁</label>
+            </div>
+            <div class="show">
+                <div class="show_1" onclick="location.href='./index.php?i=23&c=entry&id=19&do=show&m=navlange_reserve_show'">
+                    <img src="http://weixin.l43.cn/attachment/images/23/2017/12/oDol8ORusUEZZmZv8vv7EMx3RRXL86.png" />
+                </div>
+                <div class="show_2">
+                    <button type="button" class="mui-btn" style="background-color: #ff0000;color:white" onclick="location.href='./index.php?i=23&c=entry&id=19&do=show&m=navlange_reserve_show'">预订</button>
+                </div>
+                <div class="show_3" onclick="location.href='./index.php?i=23&c=entry&id=19&do=show&m=navlange_reserve_show'">
+                    <div>铜仁万山大剧院《白雪公主》12月31日下午14:20-15:50 </div>
+                    <div>世界经典童话故事《白雪公主》很久以前，美丽的皇后诞下白雪公主后就去世了，伤心的国王娶了一位王后，白雪公主的后母--王后美貌盖世，但魔镜却告诉她世上唯有白雪公主最漂亮，王后派猎人萨理瓦猎人把她带到森林准备谋害，萨理瓦猎人同情白雪公主让她光往森林深处。小动物们用善良的心抚慰她，对黑暗恐惧的她无意中走到小木屋，收拾完房间后她进入了梦乡。房子的主人是在外边开矿的七个小矮人。他们听了白雪公主的诉说把她留在家中。王后得知白雪公主未死，便用魔镜把自己变成一个老太婆，来到密林深处，哄骗白雪公主吃下一只有毒的苹果，使公主昏死过去。七个小矮人刚好下班回到家中，王后见况仓惶逃跑…七个小矮人悲痛万分，邻国的王子刚好路过森林的小木屋，缘分让他们在这个时候相遇乐，爱情之吻使白雪公主死而复生。从此王子与公主过上了幸福的生活！</div>
+                    <div style="padding-top:5px;color:red">
+                        <span style="font-size:12px"><i class="fa fa-cny"></i></span><span>58.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="show">
+                <div class="show_1" onclick="location.href='./index.php?i=23&c=entry&id=18&do=show&m=navlange_reserve_show'">
+                    <img src="http://weixin.l43.cn/attachment/images/23/2017/12/oYbiR2AuJy1NrTabRfBvZ2YPouRZIf.png" />
+                </div>
+                <div class="show_2">
+                    <button type="button" class="mui-btn" style="background-color: #ff0000;color:white" onclick="location.href='./index.php?i=23&c=entry&id=18&do=show&m=navlange_reserve_show'">预订</button>
+                </div>
+                <div class="show_3" onclick="location.href='./index.php?i=23&c=entry&id=18&do=show&m=navlange_reserve_show'">
+                    <div>铜仁万山大剧院《绿野仙踪》12月31日上午10:20-11:50     </div>
+                    <div>
+                        小姑娘桃乐滋和叔叔、婶婶住在农场里。平日里，叔叔婶婶对待他就像亲生女儿一样，关心疼爱，有一天，农场突然遭到一股强龙卷风的袭击，将桃乐滋卷走，当等停下来的时候，她发现自己已经掉在一个叫奥兹的矮人国里。由于木头房子掉下来时正好砸死了为害矮人国的东方女巫，桃乐滋在矮人国受到了热烈的欢迎和尊宠的待遇。为此，桃乐滋还得到了东方女巫的宝物——红宝石手串。在桃乐滋提出要回到叔叔、婶婶身边时，深受矮人国人民爱戴的葛琳达仙女，还给她指引了一条通向翡翠城，找奥兹魔法师寻求帮助的路。 在沿着去往翡翠城的路上，桃乐滋与没有头脑的稻草人、没有心脏的铁皮人和毫无勇气和胆量的狮子成了好朋友。为了实现各自心中的愿望，四个人结伴前行。在最终抵达翡翠城并战胜东方女巫的妹妹西方女巫后，稻草人发现自己有了会算数的头脑、铁皮人发现自己有了一个健康的心脏、狮子重新找回了勇气成了百兽之王，而桃乐滋也在红宝石手串的魔力帮助下，回到了农场、回到了叔叔、婶婶的身边。
+                    </div>
+                    <div style="padding-top:5px;color:red">
+                        <span style="font-size:12px"><i class="fa fa-cny"></i></span><span>58.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="show">
+                <div class="show_1" onclick="location.href='./index.php?i=23&c=entry&id=20&do=show&m=navlange_reserve_show'">
+                    <img src="http://weixin.l43.cn/attachment/images/23/2017/12/sGG5Bg2q2gH5G8wVqzcBqC50mqIQhH.jpg" />
+                </div>
+                <div class="show_2">
+                    <button type="button" class="mui-btn" style="background-color: #ff0000;color:white" onclick="location.href='./index.php?i=23&c=entry&id=20&do=show&m=navlange_reserve_show'">预订</button>
+                </div>
+                <div class="show_3" onclick="location.href='./index.php?i=23&c=entry&id=20&do=show&m=navlange_reserve_show'">
+                    <div> 铜仁万山大剧院《睡美人》 12月31日下午16:30-18:00 </div>
+                    <div>《睡美人》睡美人是一个王后所诞下的孩子。王后非常高兴，邀请了仙子族的各方好友前来盛宴。却没有邀请邪恶的女巫娜达生。此事被心怀嫉妒和忿恨的女巫知悉，便不请自来，以“公主会被纺织机的纺缍刺破手指而丧命”的诅咒作为礼物。幸而玛维利拉仙子未献上祝福，她把女巫的毒咒缓解，使公主不会死掉。但公主仍会沉睡，直至有一个真心爱慕公主的人前来献上亲吻，公主才会醒过来。</div>
+                    <div style="padding-top:5px;color:red">
+                        <span style="font-size:12px"><i class="fa fa-cny"></i></span><span>58.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="background-color: white;padding:10px">
+            <div class="index_tag" style="color:">
+                <label style="height:22px;border-bottom:2px  solid">怀化</label>
+            </div>
+            <div class="show">
+                <div class="show_1" onclick="location.href='./index.php?i=23&c=entry&id=21&do=show&m=navlange_reserve_show'">
+                    <img src="http://weixin.l43.cn/attachment/images/23/2017/12/xT5220y8zYa52a8tfdyZTtGE25558a.jpg" />
+                </div>
+                <div class="show_2">
+                    <button type="button" class="mui-btn" style="background-color: #ff0000;color:white" onclick="location.href='./index.php?i=23&c=entry&id=21&do=show&m=navlange_reserve_show'">预订</button>
+                </div>
+                <div class="show_3" onclick="location.href='./index.php?i=23&c=entry&id=21&do=show&m=navlange_reserve_show'">
+                    <div>怀化阳戏大剧院《睡美人》1月1号下午16:30—18:00</div>
+                    <div>
+                        《睡美人》睡美人是一个王后所诞下的孩子。王后非常高兴，邀请了仙子族的各方好友前来盛宴。却没有邀请邪恶的女巫娜达生。此事被心怀嫉妒和忿恨的女巫知悉，便不请自来，以“公主会被纺织机的纺缍刺破手指而丧命”的诅咒作为礼物。幸而玛维利拉仙子未献上祝福，她把女巫的毒咒缓解，使公主不会死掉。但公主仍会沉睡，直至有一个真心爱慕公主的人前来献上亲吻，公主才会醒过来。
+                        于是，国王下令禁止使用纺缍。然而公主十五六岁那年回到宫中，女巫专门不怀好意的拜访，使公主触碰了纺织针，即倒在了地上。诅咒成真，那达生气势嚣张，不把三位仙女放在眼里，并告诉她们，公主真爱便是临国王子，不过她即将把王子关外魔堡内，意味着公主将一直沉睡。三位仙女决定找到公主的真爱，将其吻醒！三位仙女想办法找到了王子，王子凭借自己的勇气，和正义盾牌和真爱之剑的力量，战胜了女巫娜达生！最终将公主吻醒！
+                    </div>
+                    <div style="padding-top:5px;color:red">
+                        <span style="font-size:12px"><i class="fa fa-cny"></i></span><span>58.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="show">
+                <div class="show_1" onclick="location.href='./index.php?i=23&c=entry&id=22&do=show&m=navlange_reserve_show'">
+                    <img src="http://weixin.l43.cn/attachment/images/23/2017/12/bRrd5vx5RNt53LVUNXpZf2vluxTLrd.jpg" />
+                </div>
+                <div class="show_2">
+                    <button type="button" class="mui-btn" style="background-color: #ff0000;color:white" onclick="location.href='./index.php?i=23&c=entry&id=22&do=show&m=navlange_reserve_show'">预订</button>
+                </div>
+                <div class="show_3" onclick="location.href='./index.php?i=23&c=entry&id=22&do=show&m=navlange_reserve_show'">
+                    <div>怀化阳戏大剧院《白雪公主》1月1号下午14:20—15:50</div>
+                    <div>很久以前，美丽的皇后诞下白雪公主后就去世了，伤心的国王娶了一位王后，白雪公主的后母--王后美貌盖世，但魔镜却告诉她世上唯有白雪公主最漂亮，王后派猎人萨理瓦猎人把她带到森林准备谋害，萨理瓦猎人同情白雪公主让她光往森林深处。小动物们用善良的心抚慰她，对黑暗恐惧的她无意中走到小木屋，收拾完房间后她进入了梦乡。房子的主人是在外边开矿的七个小矮人。他们听了白雪公主的诉说把她留在家中。王后得知白雪公主未死，便用魔镜把自己变成一个老太婆，来到密林深处，哄骗白雪公主吃下一只有毒的苹果，使公主昏死过去。七个小矮人刚好下班回到家中，王后见况仓惶逃跑…七个小矮人悲痛万分，邻国的王子刚好路过森林的小木屋，缘分让他们在这个时候相遇乐，爱情之吻使白雪公主死而复生。从此王子与公主过上了幸福的生活！</div>
+                    <div style="padding-top:5px;color:red">
+                        <span style="font-size:12px"><i class="fa fa-cny"></i></span><span>58.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="show">
+                <div class="show_1" onclick="location.href='./index.php?i=23&c=entry&id=23&do=show&m=navlange_reserve_show'">
+                    <img src="http://weixin.l43.cn/attachment/images/23/2017/12/H0ccPzQCcet7dxwawAjSdd00dcS0uf.jpg" />
+                </div>
+                <div class="show_2">
+                    <button type="button" class="mui-btn" style="background-color: #ff0000;color:white" onclick="location.href='./index.php?i=23&c=entry&id=23&do=show&m=navlange_reserve_show'">预订</button>
+                </div>
+                <div class="show_3" onclick="location.href='./index.php?i=23&c=entry&id=23&do=show&m=navlange_reserve_show'">
+                    <div>怀化阳戏大剧院《绿野仙踪》1月1号上午10:20-11:50</div>
+                    <div>小姑娘桃乐滋和叔叔、婶婶住在农场里。平日里，叔叔婶婶对待他就像亲生女儿一样，关心疼爱，有一天，农场突然遭到一股强龙卷风的袭击，将桃乐滋卷走，当等停下来的时候，她发现自己已经掉在一个叫奥兹的矮人国里。由于木头房子掉下来时正好砸死了为害矮人国的东方女巫，桃乐滋在矮人国受到了热烈的欢迎和尊宠的待遇。为此，桃乐滋还得到了东方女巫的宝物——红宝石手串。在桃乐滋提出要回到叔叔、婶婶身边时，深受矮人国人民爱戴的葛琳达仙女，还给她指引了一条通向翡翠城，找奥兹魔法师寻求帮助的路。 在沿着去往翡翠城的路上，桃乐滋与没有头脑的稻草人、没有心脏的铁皮人和毫无勇气和胆量的狮子成了好朋友。为了实现各自心中的愿望，四个人结伴前行。在最终抵达翡翠城并战胜东方女巫的妹妹西方女巫后，稻草人发现自己有了会算数的头脑、铁皮人发现自己有了一个健康的心脏、狮子重新找回了勇气成了百兽之王，而桃乐滋也在红宝石手串的魔力帮助下，回到了农场、回到了叔叔、婶婶的身边。</div>
+                    <div style="padding-top:5px;color:red">
+                        <span style="font-size:12px"><i class="fa fa-cny"></i></span><span>58.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="height:50px"></div>
+        <script>
+    function change_city() {
+        $("#main_panel").hide();
+        $("#city_panel").show();
+    }
+        </script>
+    </div>
+    <style>
+        .city_item {
+            height: 40px;
+            line-height: 40px;
+            background-color: white;
+            padding: 0px 10px;
+        }
+    </style>
+    <div id="city_panel" style="background-color: #d9d9d9;display:none">
+        <header class="mui-bar mui-bar-nav">
+            <a class="mui-icon mui-icon-left-nav mui-pull-left" href="javascript:cancel_city_select()"></a>
+            <h1 class="mui-title">选择城市</h1>
+        </header>
+        <script type="text/javascript">
+        function cancel_city_select() {
+            $("#city_panel").hide();
+            $("#main_panel").show();
+        }
+        </script>
+        <div style="position: fixed;top:0px;right:0px;width:30px;height:100%;text-align: center;background:rgba(0, 0, 0, 0.1)!important;filter:Alpha(opacity=10); background:#000;z-index: 2;padding-top: 100px;color:grey">
+            <div>A</div>
+        </div>
+        <div style="height:60px"></div>
+        <div style="height:40px;line-height: 40px;background-color: white;padding:0px 10px">
+            <span style="color:grey">当前城市：</span>
+            <span id="step_2_cur_city">长沙</span>
+        </div>
+        <div style="height:40px;line-height: 40px;padding:0px 10px;color:grey">A</div>
+        <div class="city_item" onclick="sel_city(36,'株洲市')">
+            株洲
+        </div>
+        <div class="city_item" onclick="sel_city(37,'湘潭市')">
+            湘潭
+        </div>
+    </div>
+    <script>
+$(function(){
+    var win_height = document.body.clientHeight;
+    $("#city_panel").css('min-height',win_height);
+})
+function sel_city(id,city) {
+    location.href="?city="+id;
+}
+String.prototype.trim = function (char, type) {
+    if (char) {
+        if (type == 'left') {
+            return this.replace(new RegExp('^\\'+char+'+', 'g'), '');
+        } else if (type == 'right') {
+            return this.replace(new RegExp('\\'+char+'+$', 'g'), '');
+        }
+        return this.replace(new RegExp('^\\'+char+'+|\\'+char+'+$', 'g'), '');
+    }
+    return this.replace(/^\s+|\s+$/g, '');
+};
+    </script>

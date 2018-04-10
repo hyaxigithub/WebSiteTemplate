@@ -1,0 +1,756 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5B78DDB3-9B2A-42A1-A4EF-E1BA863F7FD6}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LYWeb</RootNamespace>
+    <AssemblyName>LYWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\WeiXin\Controllers\CatalogController.cs" />
+    <Compile Include="Areas\WeiXin\Controllers\MemberController.cs" />
+    <Compile Include="Areas\WeiXin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\WeiXin\Controllers\TheatreController.cs" />
+    <Compile Include="Areas\WeiXin\WeiXinAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminManageController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lib\common.css" />
+    <Content Include="Lib\jquery.seat-charts.css" />
+    <Content Include="Lib\Js\array.js" />
+    <Content Include="Lib\Js\hammer.min.js" />
+    <Content Include="Lib\Js\jquery.seat-charts.min.js" />
+    <Content Include="Lib\Js\map.js" />
+    <Content Include="Content\AdminLTE.css" />
+    <Content Include="Content\AdminLTE.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\common.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\skins\skin-black-light.css" />
+    <Content Include="Content\skins\skin-black-light.min.css" />
+    <Content Include="Content\skins\skin-black.css" />
+    <Content Include="Content\skins\skin-black.min.css" />
+    <Content Include="Content\skins\skin-blue-light.css" />
+    <Content Include="Content\skins\skin-blue-light.min.css" />
+    <Content Include="Content\skins\skin-blue.css" />
+    <Content Include="Content\skins\skin-blue.min.css" />
+    <Content Include="Content\skins\skin-green-light.css" />
+    <Content Include="Content\skins\skin-green-light.min.css" />
+    <Content Include="Content\skins\skin-green.css" />
+    <Content Include="Content\skins\skin-green.min.css" />
+    <Content Include="Content\skins\skin-purple-light.css" />
+    <Content Include="Content\skins\skin-purple-light.min.css" />
+    <Content Include="Content\skins\skin-purple.css" />
+    <Content Include="Content\skins\skin-purple.min.css" />
+    <Content Include="Content\skins\skin-red-light.css" />
+    <Content Include="Content\skins\skin-red-light.min.css" />
+    <Content Include="Content\skins\skin-red.css" />
+    <Content Include="Content\skins\skin-red.min.css" />
+    <Content Include="Content\skins\skin-yellow-light.css" />
+    <Content Include="Content\skins\skin-yellow-light.min.css" />
+    <Content Include="Content\skins\skin-yellow.css" />
+    <Content Include="Content\skins\skin-yellow.min.css" />
+    <Content Include="Content\skins\_all-skins.css" />
+    <Content Include="Content\skins\_all-skins.min.css" />
+    <Content Include="Content\swiper.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\LYProject.bak" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app.min.js" />
+    <Content Include="Scripts\bootstrap-treeview-master\.gitattributes" />
+    <Content Include="Scripts\bootstrap-treeview-master\.gitignore" />
+    <Content Include="Scripts\bootstrap-treeview-master\app.js" />
+    <Content Include="Scripts\bootstrap-treeview-master\dist\bootstrap-treeview.min.css" />
+    <Content Include="Scripts\bootstrap-treeview-master\dist\bootstrap-treeview.min.js" />
+    <Content Include="Scripts\bootstrap-treeview-master\Gruntfile.js" />
+    <Content Include="Scripts\bootstrap-treeview-master\public\css\bootstrap-treeview.css" />
+    <Content Include="Scripts\bootstrap-treeview-master\public\example-dom.html" />
+    <Content Include="Scripts\bootstrap-treeview-master\public\index.html" />
+    <Content Include="Scripts\bootstrap-treeview-master\public\js\bootstrap-treeview.js" />
+    <Content Include="Scripts\bootstrap-treeview-master\screenshot\default.PNG" />
+    <Content Include="Scripts\bootstrap-treeview-master\src\css\bootstrap-treeview.css" />
+    <Content Include="Scripts\bootstrap-treeview-master\src\js\bootstrap-treeview.js" />
+    <Content Include="Scripts\bootstrap-treeview-master\tests\lib\blanket.min.js" />
+    <Content Include="Scripts\bootstrap-treeview-master\tests\lib\bootstrap-treeview.css" />
+    <Content Include="Scripts\bootstrap-treeview-master\tests\lib\bootstrap-treeview.js" />
+    <Content Include="Scripts\bootstrap-treeview-master\tests\lib\jquery.js" />
+    <Content Include="Scripts\bootstrap-treeview-master\tests\lib\qunit-1.12.0.css" />
+    <Content Include="Scripts\bootstrap-treeview-master\tests\lib\qunit-1.12.0.js" />
+    <Content Include="Scripts\bootstrap-treeview-master\tests\tests.html" />
+    <Content Include="Scripts\bootstrap-treeview-master\tests\tests.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap3-dialog-master\.gitignore" />
+    <Content Include="Scripts\bootstrap3-dialog-master\changelog.txt" />
+    <Content Include="Scripts\bootstrap3-dialog-master\dist\css\bootstrap-dialog.css" />
+    <Content Include="Scripts\bootstrap3-dialog-master\dist\css\bootstrap-dialog.min.css" />
+    <Content Include="Scripts\bootstrap3-dialog-master\dist\js\bootstrap-dialog.js" />
+    <Content Include="Scripts\bootstrap3-dialog-master\dist\js\bootstrap-dialog.min.js" />
+    <Content Include="Scripts\bootstrap3-dialog-master\examples\images\pig.ico" />
+    <Content Include="Scripts\bootstrap3-dialog-master\examples\index.html" />
+    <Content Include="Scripts\bootstrap3-dialog-master\examples\play\append-to-div.html" />
+    <Content Include="Scripts\bootstrap3-dialog-master\examples\play\button-event.html" />
+    <Content Include="Scripts\bootstrap3-dialog-master\examples\play\custom-dialog-id.html" />
+    <Content Include="Scripts\bootstrap3-dialog-master\examples\play\only-one-dialog.html" />
+    <Content Include="Scripts\bootstrap3-dialog-master\examples\play\reopen-dialog.html" />
+    <Content Include="Scripts\bootstrap3-dialog-master\examples\play\spinning-icon.html" />
+    <Content Include="Scripts\bootstrap3-dialog-master\examples\play\tabindex.html" />
+    <Content Include="Scripts\bootstrap3-dialog-master\examples\remote.html" />
+    <Content Include="Scripts\bootstrap3-dialog-master\gulpfile.js" />
+    <Content Include="Scripts\bootstrap3-dialog-master\src\css\bootstrap-dialog.css" />
+    <Content Include="Scripts\bootstrap3-dialog-master\src\js\bootstrap-dialog.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\.gitignore" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\ajaxSubmit.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\attribute.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\choice.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\collapse.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\container.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\container2.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\container3.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\container4.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\date.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\defaultMessage.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\dynamic.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\dynamic2.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\dynamic3.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\dynamic4.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\enable.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\enable2.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\event.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\event2.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\event3.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\feedbackIcons.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\file.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\group.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\html5.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\i18n.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\index.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\invisible.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\message.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\multiple.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\remote.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\reset.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\selector.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\selector2.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\specialName.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\submitHandler.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\tab.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\tooltip.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\validators.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\css\bootstrapValidator.css" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\css\bootstrapValidator.min.css" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\bootstrapValidator.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\bootstrapValidator.min.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\ar_MA.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\be_FR.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\be_NL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\bg_BG.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\cs_CZ.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\da_DK.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\de_DE.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\en_US.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\es_CL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\es_ES.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\fa_IR.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\fr_FR.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\gr_EL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\he_IL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\hu_HU.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\id_ID.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\it_IT.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\ja_JP.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\nl_NL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\no_NO.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\pl_PL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\pt_BR.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\pt_PT.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\ro_RO.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\ru_RU.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\sq_AL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\sr_RS.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\sv_SE.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\th_TH.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\tr_TR.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\ua_UA.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\vi_VN.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\zh_CN.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\dist\js\language\zh_TW.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\Gruntfile.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\LICENSE.txt" />
+    <Content Include="Scripts\bootstrapvalidator-master\screenshots\demo.gif" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\css\bootstrapValidator.css" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\bootstrapValidator.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\ar_MA.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\be_FR.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\be_NL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\bg_BG.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\cs_CZ.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\da_DK.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\de_DE.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\en_US.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\es_CL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\es_ES.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\fa_IR.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\fr_FR.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\gr_EL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\he_IL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\hu_HU.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\id_ID.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\it_IT.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\ja_JP.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\nl_NL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\no_NO.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\pl_PL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\pt_BR.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\pt_PT.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\ro_RO.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\ru_RU.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\sq_AL.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\sr_RS.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\sv_SE.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\th_TH.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\tr_TR.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\ua_UA.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\vi_VN.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\zh_CN.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\language\zh_TW.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\base64.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\between.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\blank.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\callback.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\choice.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\color.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\creditCard.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\cusip.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\cvv.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\date.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\different.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\digits.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\ean.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\emailAddress.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\file.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\greaterThan.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\grid.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\hex.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\hexColor.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\iban.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\id.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\identical.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\imei.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\imo.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\integer.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\ip.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\isbn.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\isin.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\ismn.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\issn.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\lessThan.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\mac.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\meid.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\notEmpty.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\numeric.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\phone.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\regexp.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\remote.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\rtn.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\sedol.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\siren.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\siret.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\step.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\stringCase.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\stringLength.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\uri.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\uuid.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\vat.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\vin.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\src\js\validator\zipCode.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\index.html" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\api.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\autoFocus.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\container.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\dynamic.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\enable.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\event.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\excluded.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\group.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\i18n.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\message.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\submit.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\between.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\callback.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\color.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\creditCard.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\date.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\ean.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\emailAddress.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\greaterThan.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\iban.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\id.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\imo.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\ip.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\isbn.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\isin.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\ismn.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\issn.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\lessThan.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\meid.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\phone.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\stringLength.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\uri.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\vat.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\validator\zipCode.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\test\spec\verbose.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\js\npm.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\jasmine\boot.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\jasmine\console.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\jasmine\jasmine-html.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\jasmine\jasmine.css" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\jasmine\jasmine.js" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\jasmine\jasmine_favicon.png" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\jquery\jquery.min.js" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\index.js" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Areas\WeiXin\Views\Theatre\Index.cshtml" />
+    <Content Include="Areas\WeiXin\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\WeiXin\Views\Member\Login.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Order\OrderSelect.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Order\OrderSelByPhone.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Member\LoginByUser.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Catalog\Index.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Member\Index.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\mui.ttf" />
+    <Content Include="Areas\WeiXin\Views\Catalog\SeatSelect.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Catalog\SeatInfo.cshtml" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jweixin-1.2.0.js" />
+    <Content Include="Scripts\layer\extend\layer.ext.js" />
+    <Content Include="Scripts\layer\layer.js" />
+    <Content Include="Scripts\layer\skin\default\icon-ext.png" />
+    <Content Include="Scripts\layer\skin\default\icon.png" />
+    <Content Include="Scripts\layer\skin\default\loading-0.gif" />
+    <Content Include="Scripts\layer\skin\default\loading-1.gif" />
+    <Content Include="Scripts\layer\skin\default\loading-2.gif" />
+    <Content Include="Scripts\layer\skin\layer.css" />
+    <Content Include="Scripts\layer\skin\layer.ext.css" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\mui.min.js" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\css\font-awesome.css" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\css\font-awesome.min.css" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\HELP-US-OUT.txt" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\toastr.min.css" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\util.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\MasterView.cshtml" />
+    <Content Include="Views\AdminManage\Index.cshtml" />
+    <Content Include="Views\Articles\NewsList.cshtml" />
+    <Content Include="Views\Paging.cshtml" />
+    <Content Include="Views\BoxWigets.cshtml" />
+    <Content Include="Views\SearchBar.cshtml" />
+    <Content Include="Views\EditMasterView.cshtml" />
+    <Content Include="Views\Articles\NewsEdit.cshtml" />
+    <Content Include="Views\Articles\NewsEdit2.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\WeiXin\Models\" />
+    <Folder Include="Iamges\Global\" />
+    <Folder Include="Scripts\AjaxFileUploader-2.1\" />
+    <Folder Include="Scripts\bootstrap-combobox-master\" />
+    <Folder Include="Scripts\bootstrap-datetimepicker\" />
+    <Folder Include="Scripts\ckeditor\" />
+    <Folder Include="Scripts\wigets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\bootstrap-treeview-master\.bowerrc" />
+    <Content Include="Scripts\bootstrap-treeview-master\.jshintrc" />
+    <Content Include="Scripts\bootstrap-treeview-master\.travis.yml" />
+    <Content Include="Scripts\bootstrap-treeview-master\bower.json" />
+    <Content Include="Scripts\bootstrap-treeview-master\CHANGELOG.md" />
+    <Content Include="Scripts\bootstrap-treeview-master\LICENSE" />
+    <Content Include="Scripts\bootstrap-treeview-master\package.json" />
+    <Content Include="Scripts\bootstrap-treeview-master\README.md" />
+    <Content Include="Scripts\bootstrap-treeview-master\tests\README.md" />
+    <Content Include="Scripts\bootstrap3-dialog-master\.eslintignore" />
+    <Content Include="Scripts\bootstrap3-dialog-master\.eslintrc" />
+    <Content Include="Scripts\bootstrap3-dialog-master\.npmignore" />
+    <Content Include="Scripts\bootstrap3-dialog-master\bower.json" />
+    <Content Include="Scripts\bootstrap3-dialog-master\composer.json" />
+    <Content Include="Scripts\bootstrap3-dialog-master\dist\less\bootstrap-dialog.less" />
+    <Content Include="Scripts\bootstrap3-dialog-master\package.json" />
+    <Content Include="Scripts\bootstrap3-dialog-master\README.md" />
+    <Content Include="Scripts\bootstrap3-dialog-master\src\less\bootstrap-dialog.less" />
+    <Content Include="Scripts\bootstrapvalidator-master\bootstrapValidator.jquery.json" />
+    <Content Include="Scripts\bootstrapvalidator-master\bower.json" />
+    <Content Include="Scripts\bootstrapvalidator-master\CHANGELOG.md" />
+    <Content Include="Scripts\bootstrapvalidator-master\CONTRIBUTORS.md" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\ajaxSubmit.php" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\remote.php" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\remote2.php" />
+    <Content Include="Scripts\bootstrapvalidator-master\demo\target.php" />
+    <Content Include="Scripts\bootstrapvalidator-master\package.json" />
+    <Content Include="Scripts\bootstrapvalidator-master\README.md" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\bootstrapvalidator-master\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\fonts\FontAwesome.otf" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\animated.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\bordered-pulled.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\core.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\fixed-width.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\font-awesome.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\icons.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\larger.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\list.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\mixins.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\path.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\rotated-flipped.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\screen-reader.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\stacked.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\less\variables.less" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\font-awesome.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_animated.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_bordered-pulled.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_core.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_fixed-width.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_icons.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_larger.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_list.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_mixins.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_path.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_rotated-flipped.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_screen-reader.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_stacked.scss" />
+    <Content Include="Scripts\plugins\font-awesome-4.6.3\scss\_variables.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{6E51DBE9-084D-4A36-905D-92561D7C5BB7}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63901</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:63901/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

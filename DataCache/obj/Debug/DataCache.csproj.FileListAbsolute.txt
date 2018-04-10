@@ -1,0 +1,17 @@
+E:\WORKSTATION\code\person\LYProject\DataCache\obj\Debug\DataCache.csproj.CoreCompileInputs.cache
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\DataCache.dll
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\DataCache.pdb
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\DDD.Light.Repo.Contracts.dll
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\DDD.Light.Repo.MongoDB.dll
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\DnsClient.dll
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\MongoDB.Bson.dll
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\MongoDB.Driver.dll
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\MongoDB.Dynamic.dll
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\System.Buffers.dll
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\DnsClient.xml
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\MongoDB.Bson.xml
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\MongoDB.Driver.xml
+E:\WORKSTATION\code\person\LYProject\DataCache\bin\Debug\MongoDB.Dynamic.pdb
+E:\WORKSTATION\code\person\LYProject\DataCache\obj\Debug\DataCache.dll
+E:\WORKSTATION\code\person\LYProject\DataCache\obj\Debug\DataCache.pdb

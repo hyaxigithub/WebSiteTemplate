@@ -1,0 +1,49 @@
+﻿
+<ul class="pagination paging">
+ 
+</ul>
+
+<script>
+
+    //分页相关 - Begin
+    $(function () {
+        //来自url
+        var page = $_Request["p"];
+        if (!page)
+            page = 1;
+                
+        //来自ViewBag
+        var totalRows = @(ViewBag.total == null ? 0 : ViewBag.total);
+        var pageSize = @(ViewBag.pageSize == null ? 10 : ViewBag.pageSize);
+
+        //计算总页数
+        //alert(totalRows % pageSize);
+        var pageCount = Math.floor(totalRows % pageSize == 0 ? totalRows / pageSize : totalRows / pageSize + 1);
+
+        //计算起始页数
+        var pageStart = page <= 5 ? 1 : page - 5;
+        pageStart = pageStart <= 1 ? 1 : pageStart;
+        
+        //计算结束页数
+        var pageEnd = (page <= 5 ? 10 : parseInt(page) + 5);
+        pageEnd = (pageEnd >= pageCount ? pageCount : pageEnd);
+
+
+        var HTML = "";
+
+        if (page > 1) {
+            HTML += "<li><a href='" + urlEdit(location.href, "p", 1) + "'><i class='fa fa-step-backward'></a></i></li>";
+            HTML += "<li><a href='" + urlEdit(location.href, "p", page - 1) + "'><i class='fa fa-play fa-rotate-180'></i></a></li>";
+        }
+        for (var i = pageStart; i <= pageEnd; i++) {
+            HTML += "<li class=" + (i == page ? "active" : "") + "><a href='" + urlEdit(location.href, "p", i) + "'>" + i + "</a></li>";
+        }
+
+        if (page < pageCount) {
+            HTML += "<li><a href='" + urlEdit(location.href, "p", ++page) + "'><i class='fa fa-play'></i></a></li>";
+            HTML += "<li><a href='" + urlEdit(location.href, "p", pageEnd) + "'> <i class='fa fa-step-forward'></i></a></li>";
+        }
+        HTML+="<li><a>总共"+totalRows+"条记录</a></li>"
+        $(".paging").html(HTML);
+    });//分页相关 - End
+</script>

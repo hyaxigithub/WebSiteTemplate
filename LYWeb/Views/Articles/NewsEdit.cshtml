@@ -1,0 +1,204 @@
+﻿
+@{
+    ViewBag.Title = "NewsEdit";
+    Layout = "~/Views/EditMasterView.cshtml";
+}
+
+<form name="defaultForm" method="post" action="NewsEdit" id="defaultForm" class="form-horizontal" role="form">
+   <div class="form-group has-feedback">
+        <label class="col-lg-1 col-sm-2 control-label" for="txtCompanyName"><font color="red">*</font>巡查时间</label>
+        <div class="col-lg-5 col-sm-4">
+            <input name="txttbPatrolTime" id="txttbPatrolTime" class="form-control" placeholder="巡查时间" required data-bv-notempty-message="不能为空" type="text">
+        </div>
+        <label class="col-lg-1 col-sm-2 control-label" for="txtCompanyName"><font color="red">*</font>巡查地址</label>
+        <div class="col-lg-5 col-sm-4">
+            <input name="txttbPatrolAddr" id="txttbPatrolAddr" class="form-control" placeholder="巡查地址" required data-bv-notempty-message="不能为空"  type="text">
+ 
+        </div>
+    </div>
+    <div class="form-group has-feedback">
+        <label class="col-lg-1 col-sm-2 control-label" for="txttbPatrolTeacher"><font color="red">*</font>巡查老师</label>
+        <div class="col-lg-5 col-sm-4">
+            <input name="txttbPatrolTeacher" id="txttbPatrolTeacher" class="form-control" placeholder="巡查老师" required data-bv-notempty-message="不能为空"  type="text">
+
+        </div>
+        <label class="col-lg-1 col-sm-2 control-label" for="txttbPatrolCompany"><font color="red">*</font>公司名称</label>
+        <div class="col-lg-5 col-sm-4">
+            <input name="txttbPatrolCompany" id="txttbPatrolCompany" class="form-control" placeholder="公司名称" required data-bv-notempty-message="不能为空" type="text">
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-1 col-sm-2 control-label" for="txttbCreateName"><font color="red">*</font>创建人</label>
+        <div class="col-lg-5 col-sm-4">
+            <input name="txttbCreateName" value="韦皓仁" readonly="readonly" id="txttbCreateName" class="form-control" placeholder="创建人" type="text">
+        </div>
+        <label class="col-lg-1 col-sm-2 control-label" for="txttbPatrolRemark">备注</label>
+        <div class="col-lg-5 col-sm-4">
+            <input name="txttbPatrolRemark" id="txttbPatrolRemark" class="form-control" placeholder="备注" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-1 col-sm-2 control-label">
+            <!-- Button trigger modal 弹出框的触发器 -->
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                选择巡查学生
+            </button>
+        </label>
+        <div class="col-lg-5 col-sm-4">
+            <textarea name="txtStudents" rows="5" cols="40" id="txtStudents" class="form-control" placeholder="巡查学生"></textarea>
+            <input name="txtStudentId" id="txtStudentId" type="hidden">
+        </div>
+    </div>
+    <div id="c"></div>
+    <div style="text-align: center">
+        <input name="btnSave" value="保存" id="btnSave" class="btn btn-default" type="button">
+        <input name="btnCancle" value="取消" id="btnCancle" class="btn btn-default" type="button">
+    </div>
+</form>
+
+<!-- Modal 弹出框的结构 -->
+@*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">学生选择</h4>
+            </div>
+            <div class="modal-body">
+                <div style="color:red;">
+                    请勾选选择框
+                </div>
+                <div class="form-group">
+                    <div id="tree"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="btn" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+<script>
+    $(function () {
+        //$('#btnSave').on('click', function () {
+        //    //alert('dd')
+        //    msg("提交成功");
+        //})
+        //$('#myModal').on('show.bs.modal', function () {
+        //    // 执行一些动作...
+        //    $.ajax({
+        //        type: "post", //要用post方式
+        //        url: "patrolnew.aspx/InitTreeView",//方法所在页面和方法名
+        //        data:"{\"deptId\":\""+$('#deptId').val()+"\"}",
+        //        contentType: "application/json",
+        //        dataType: "json",
+        //        success: function (data2) {
+        //            //alert(data2);//返回的数据用data.d获取内容
+        //            var temp = JSON.parse(data2.d);
+        //            d = JSON.stringify(temp.data);
+        //            $('#tree').treeview({
+        //                data: d,         // data is not optional
+        //                levels: 3,
+        //                mutiSelect:true,
+        //                state: {
+        //                    checked: true,
+        //                    disabled: true,
+        //                    expanded: true,
+        //                    selected: true
+        //                },
+        //                showCheckbox: true,
+        //                onNodeChecked: function(event, node) { //选中节点
+        //                    var selectNodes = getChildNodeIdArr(node); //获取所有子节点
+        //                    if (selectNodes) { //子节点不为空，则选中所有子节点
+        //                        $('#tree').treeview('checkNode', [selectNodes, { silent: true }]);
+        //                    }
+        //                    var parentNode = $("#tree").treeview("getNode", node.parentId);
+        //                    setParentNodeCheck(node);
+        //                },
+        //                onNodeUnchecked: function(event, node) { //取消选中节点
+        //                    var selectNodes = getChildNodeIdArr(node); //获取所有子节点
+        //                    if (selectNodes) { //子节点不为空，则取消选中所有子节点
+        //                        $('#tree').treeview('uncheckNode', [selectNodes, { silent: true }]);
+        //                    }
+        //                    var parentNode = $("#tree").treeview("getNode", node.parentId);
+        //                    if (parentNode) { //子节点不为空，则取消选中所有子节点
+        //                        $('#tree').treeview('uncheckNode', [parentNode, { silent: true }]);
+        //                    }
+        //                }
+        //            });
+        //            $('#tree').treeview('collapseAll', { silent: true });
+        //        },
+        //        error: function (err) {
+        //            alert(JSON.stringify(err));
+        //        }
+        //    });
+        //})
+        //$("#btn").click(function (e) {
+        //    var arr = $('#tree').treeview('getChecked');
+        //    var c = $('#txtStudents');
+        //    var d = $('#txtStudentId');
+        //    var temp = "";
+        //    var tempName = "";
+
+        //    for (var key in arr) {
+        //        if (/^00\d+$/.test(arr[key].id))
+        //            continue;
+        //        temp = temp + "," + arr[key].id;
+        //        tempName = tempName + "," + arr[key].text;
+        //    }
+        //    temp = temp.slice(1);
+        //    tempName = tempName.slice(1);
+        //    c.val(tempName);
+        //    d.val(temp);
+        //    $('#myModal').modal('hide');
+        //})
+
+    })
+
+
+
+    // 选中所有子节点时，选中父节点 取消子节点时取消父节点
+    function setParentNodeCheck(node) {
+        var parentNode = $("#tree").treeview("getNode", node.parentId);
+        if (parentNode.nodes) {
+            var checkedCount = 0;
+            for (x in parentNode.nodes) {
+                if (parentNode.nodes[x].state.checked) {
+                    checkedCount++;
+                } else {
+                    break;
+                }
+            }
+            if (checkedCount == parentNode.nodes.length) {  //如果子节点全部被选 父全选
+                $("#tree").treeview("checkNode", parentNode.nodeId);
+                setParentNodeCheck(parentNode);
+            } else {   //如果子节点未全部被选 父未全选
+                $('#tree').treeview('uncheckNode', parentNode.nodeId);
+                setParentNodeCheck(parentNode);
+            }
+        }
+    }
+    // 选中父节点时，选中所有子节点
+    function getChildNodeIdArr(node) {
+        var ts = [];
+        if (node.nodes) {
+            for (x in node.nodes) {
+                ts.push(node.nodes[x].nodeId);
+                if (node.nodes[x].nodes) {
+                    var getNodeDieDai = getChildNodeIdArr(node.nodes[x]);
+                    for (j in getNodeDieDai) {
+                        ts.push(getNodeDieDai[j]);
+                    }
+                }
+            }
+        } else {
+            ts.push(node.nodeId);
+        }
+        return ts;
+    }
+</script>

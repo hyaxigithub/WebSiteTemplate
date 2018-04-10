@@ -1,0 +1,210 @@
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\ApplicationInsights.config
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\roslyn\csc.exe
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\roslyn\System.Collections.Immutable.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\roslyn\System.Reflection.Metadata.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\roslyn\vbc.exe
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\roslyn\VBCSCompiler.exe
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\roslyn\VBCSCompiler.exe.config
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\LYWeb.dll.config
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\LYWeb.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\LYWeb.pdb
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Antlr3.Runtime.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\EntityFramework.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\EntityFramework.SqlServer.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AI.Agent.Intercept.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AI.DependencyCollector.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AI.Web.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AI.WindowsServer.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.ApplicationInsights.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AspNet.Identity.Core.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.Cookies.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.Facebook.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.Google.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.OAuth.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.Twitter.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Web.Infrastructure.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Newtonsoft.Json.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Owin.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.Helpers.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.Mvc.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.Optimization.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.Razor.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.WebPages.Deployment.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.WebPages.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.WebPages.Razor.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\WebGrease.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AI.DependencyCollector.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AI.Web.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AI.WindowsServer.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.ApplicationInsights.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.Helpers.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.Mvc.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.Optimization.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.Razor.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.WebPages.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.WebPages.Deployment.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Web.WebPages.Razor.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Antlr3.Runtime.pdb
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Newtonsoft.Json.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\EntityFramework.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\EntityFramework.SqlServer.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AspNet.Identity.Core.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.Facebook.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.Cookies.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.OAuth.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.Google.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.Twitter.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\System.Web.Helpers.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\System.Web.Mvc.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\System.Web.Optimization.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\System.Web.Razor.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\System.Web.WebPages.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\EntityFramework.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\EntityFramework.SqlServer.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\Microsoft.AspNet.Identity.Owin.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.Host.SystemWeb.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.Security.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.Security.Facebook.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.Security.Google.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.Security.Twitter.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\obj\Debug\LYWeb.csprojResolveAssemblyReference.cache
+E:\WORKSTATION\code\person\LYProject\LYWeb\obj\Debug\LYWeb.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\obj\Debug\LYWeb.pdb
+H:\worker code\LYProject\LYWeb\bin\ApplicationInsights.config
+H:\worker code\LYProject\LYWeb\bin\roslyn\csc.exe
+H:\worker code\LYProject\LYWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+H:\worker code\LYProject\LYWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+H:\worker code\LYProject\LYWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+H:\worker code\LYProject\LYWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+H:\worker code\LYProject\LYWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+H:\worker code\LYProject\LYWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+H:\worker code\LYProject\LYWeb\bin\roslyn\System.Collections.Immutable.dll
+H:\worker code\LYProject\LYWeb\bin\roslyn\System.Reflection.Metadata.dll
+H:\worker code\LYProject\LYWeb\bin\roslyn\vbc.exe
+H:\worker code\LYProject\LYWeb\bin\roslyn\VBCSCompiler.exe
+H:\worker code\LYProject\LYWeb\bin\roslyn\VBCSCompiler.exe.config
+H:\worker code\LYProject\LYWeb\bin\LYWeb.dll.config
+H:\worker code\LYProject\LYWeb\bin\LYWeb.dll
+H:\worker code\LYProject\LYWeb\bin\LYWeb.pdb
+H:\worker code\LYProject\LYWeb\bin\Antlr3.Runtime.dll
+H:\worker code\LYProject\LYWeb\bin\EntityFramework.dll
+H:\worker code\LYProject\LYWeb\bin\EntityFramework.SqlServer.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AI.Agent.Intercept.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AI.DependencyCollector.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AI.PerfCounterCollector.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AI.ServerTelemetryChannel.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AI.Web.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AI.WindowsServer.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.ApplicationInsights.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AspNet.Identity.Core.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.Cookies.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.Facebook.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.Google.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.OAuth.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.Twitter.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Web.Infrastructure.dll
+H:\worker code\LYProject\LYWeb\bin\Newtonsoft.Json.dll
+H:\worker code\LYProject\LYWeb\bin\Owin.dll
+H:\worker code\LYProject\LYWeb\bin\System.Web.Helpers.dll
+H:\worker code\LYProject\LYWeb\bin\System.Web.Mvc.dll
+H:\worker code\LYProject\LYWeb\bin\System.Web.Optimization.dll
+H:\worker code\LYProject\LYWeb\bin\System.Web.Razor.dll
+H:\worker code\LYProject\LYWeb\bin\System.Web.WebPages.Deployment.dll
+H:\worker code\LYProject\LYWeb\bin\System.Web.WebPages.dll
+H:\worker code\LYProject\LYWeb\bin\System.Web.WebPages.Razor.dll
+H:\worker code\LYProject\LYWeb\bin\WebGrease.dll
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AI.DependencyCollector.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AI.ServerTelemetryChannel.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AI.Web.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AI.WindowsServer.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.ApplicationInsights.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+H:\worker code\LYProject\LYWeb\bin\System.Web.Helpers.xml
+H:\worker code\LYProject\LYWeb\bin\System.Web.Mvc.xml
+H:\worker code\LYProject\LYWeb\bin\System.Web.Optimization.xml
+H:\worker code\LYProject\LYWeb\bin\System.Web.Razor.xml
+H:\worker code\LYProject\LYWeb\bin\System.Web.WebPages.xml
+H:\worker code\LYProject\LYWeb\bin\System.Web.WebPages.Deployment.xml
+H:\worker code\LYProject\LYWeb\bin\System.Web.WebPages.Razor.xml
+H:\worker code\LYProject\LYWeb\bin\Antlr3.Runtime.pdb
+H:\worker code\LYProject\LYWeb\bin\Newtonsoft.Json.xml
+H:\worker code\LYProject\LYWeb\bin\EntityFramework.xml
+H:\worker code\LYProject\LYWeb\bin\EntityFramework.SqlServer.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AspNet.Identity.Core.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.Facebook.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.Cookies.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.OAuth.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.Google.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.Twitter.xml
+H:\worker code\LYProject\LYWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\System.Web.Helpers.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\System.Web.Mvc.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\System.Web.Optimization.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\System.Web.Razor.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\System.Web.WebPages.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\EntityFramework.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\EntityFramework.SqlServer.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\Microsoft.AspNet.Identity.Owin.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.Host.SystemWeb.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.Security.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.Security.Facebook.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.Security.Google.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.Security.Twitter.resources.dll
+H:\worker code\LYProject\LYWeb\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+H:\worker code\LYProject\LYWeb\obj\Debug\LYWeb.csprojResolveAssemblyReference.cache
+H:\worker code\LYProject\LYWeb\obj\Debug\LYWeb.dll
+H:\worker code\LYProject\LYWeb\obj\Debug\LYWeb.pdb
+H:\worker code\LYProject\LYWeb\obj\Debug\LYWeb.csproj.CoreCompileInputs.cache
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\DAL.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Common.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\System.Linq.Dynamic.dll
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\DAL.pdb
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\Common.pdb
+E:\WORKSTATION\code\person\LYProject\LYWeb\bin\DAL.dll.config
+E:\WORKSTATION\code\person\LYProject\LYWeb\obj\Debug\LYWeb.csproj.CoreCompileInputs.cache

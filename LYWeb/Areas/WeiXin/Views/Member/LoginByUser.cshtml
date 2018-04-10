@@ -1,0 +1,339 @@
+﻿@{
+    Layout = "~/Areas/WeiXin/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<script type="text/javascript">
+function showVerify(){
+  var login_num = getCookie("login_num");
+  if (login_num == null || login_num == "" || login_num == 0) {
+      $("#valid_code_pic").attr("disabled",true);
+      $("#verify_p").hide();
+  }else{
+      $("#valid_code_pic").attr("disabled",false);
+      $("#verify_p").show();
+  };
+}
+
+</script>
+<style type="text/css">
+    .login-text {
+        width: 100%;
+        text-align: center;
+        padding-top: 30px;
+    }
+
+    .login-text-2 {
+        text-align: center;
+    }
+
+    .login-text i {
+        display: inline-block;
+        width: 20%;
+        height: .5px;
+        background-color: #999;
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px);
+    }
+
+    .login-form {
+        padding: 0 25px;
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 25px;
+    }
+
+    .login-phone, .login-pass, .login-code {
+        border: 1px solid #ccc;
+        height: 43px;
+        border-radius: 5px;
+        margin-bottom: 25px;
+    }
+
+    .login-phone-left, .login-pass-left, .login-code-left {
+        float: left;
+        margin: 6.5px 0;
+        line-height: 29px;
+        font-size: 14.5px;
+        width: 45px;
+        text-align: center;
+        border-right: 1px solid #ccc;
+    }
+
+    .login-phone-right, .login-pass-right, .login-code-right {
+        font-size: 14px;
+        margin-left: 55px;
+        box-sizing: border-box;
+        overflow: hidden;
+        line-height: 43px;
+        position: relative;
+    }
+
+        .login-phone-right input, .login-pass-right input, .login-code-right input {
+            font-size: 1.3rem !important;
+            height: 3.5rem;
+            border: 0 !important;
+            background-color: transparent !important;
+        }
+
+        .login-pass-right a, .login-code-right a {
+            position: absolute;
+            top: 0;
+            right: 1px;
+            font-size: 14px;
+            color: #333;
+        }
+</style>
+
+    <!-- Header -->
+    <!-- <header class="am-topbar am-topbar-fixed-top">
+        <div class="am-container">
+            <h1 class="am-topbar-brand am-center am-text-truncate index-title" style="text-align: center;">登录</h1>
+            <a class="index-query am-topbar-btn" style="margin-top:13px;right:6rem;"
+            href="/Mobile/Index/codeSelect.html"><i class="am-icon-search am-text-warning"></i><span class="">订单</span></a>
+            <a class="index-query am-topbar-btn" style="margin-top:13px;" href="/Mobile/Index/"><i class="m-header-icon am-icon-home"></i>首页</a>
+        </div> -->
+    <header data-am-widget="header" class="am-header am-text-defalut">
+        <div class="am-header-left am-header-nav ">
+            <a href="javascript:history.go(-1);" class="">
+                <i class="am-header-icon am-icon-chevron-left">
+                </i>
+            </a>
+        </div>
+        <h1 class="am-header-title">
+            登录
+        </h1>
+        <div class="am-header-right am-header-nav">
+            <a href="/Mobile/Index/">
+                <i class="am-header-icon am-icon-home">
+                </i>
+            </a>
+        </div>
+    </header>
+    <article>
+        <div class="am-padding-top-sm am-padding-bottom-0 am-text-sm am-padding-left am-padding-right">
+            <form class="am-form am-form-horizontal" id="main_form" action="" method="post" onsubmit="return false;" accept-charset="utf-8">
+                <div class="am-tabs" data-am-tabs id="zk-m-login-tab">
+                    <div class="login-text">
+                        <i></i>
+                        <span><a href="javascript:;" style="color: #555;" id="loginphone">手机快捷登录</a></span>
+                        <i></i>
+                    </div>
+                    <div class="login-text-2"><span>或</span></div>
+                    <div class="login-text-2">
+                        <span><a href="javascript:;" style="color: #F37B1D;" id="loginaccount">账号登录</a></span>
+                    </div>
+                    <div class="login-form" id="login-phone" style="z-index: 88;">
+                        <div class="login-phone">
+                            <div class="login-phone-left"><i class="am-icon-mobile am-icon-sm"></i></div>
+                            <div class="login-phone-right">
+                                <input type="hidden" id="opt_m" name="opt" value="mobile">
+                                <input type="text" class="am-input-lg" id="mobile" name="account" placeholder="输入手机号">
+                            </div>
+                        </div>
+                        <div class="login-code">
+                            <div class="login-code-left"><i class="am-icon-lock am-icon-sm"></i></div>
+                            <div class="login-code-right">
+                                <input style="padding-top:0;padding-bottom: 0;padding-right: 0; " type="text" class="am-radius" id="verify_pic" value="" placeholder="输入验证码">
+                                <a href="#" style="width: 40%;height: 100%;"><img src="/Mobile/Index/getImagecode.html" id="valid_pic_register" alt="验证码" style="vertical-align: top;width: 100%;height: 100%;"></a>
+                            </div>
+                        </div>
+                        <div class="login-pass">
+                            <div class="login-pass-left"><i class="am-icon-lock am-icon-sm"></i></div>
+                            <div class="login-pass-right">
+                                <input type="text" class="am-input-lg" id="verify_sms" name="verify_sms" placeholder="输入短信校验码">
+                                <a href="javascript:;" id="send_content">获取校验码</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="login-form" id="login-account" style="display: none;z-index: 99;">
+                        <div class="login-phone">
+                            <div class="login-phone-left"><i class="am-icon-user am-icon-sm"></i></div>
+                            <div class="login-phone-right">
+                                <input type="hidden" id="opt_a" name="opt" value="account" disabled="disabled">
+                                <input type="text" class="am-radius am-input-lg" id="account" name="account" placeholder="输入用户名" disabled="disabled">
+                            </div>
+                        </div>
+
+                        <div class="login-pass">
+                            <div class="login-pass-left"><i class="am-icon-lock am-icon-sm"></i></div>
+                            <div class="login-pass-right">
+                                <input type="password" class="am-radius am-input-lg" id="pass" name="password" placeholder="输入密码" disabled="disabled">
+                            </div>
+                        </div>
+
+                        <div class="login-code" id="verify_p">
+                            <div class="login-code-left"><i class="am-icon-lock am-icon-sm"></i></div>
+                            <div class="login-code-right">
+                                <input type="text" class="am-radius" id="valid_code_pic" name="verify" placeholder="输入验证码" disabled="disabled">
+                                <a href="#"><img src="/Mobile/Index/getImagecode.html" id="valid_pic_register" alt="验证码"></a>
+                            </div>
+                        </div>
+                        <script type="text/javascript">showVerify();</script>
+                    </div>
+                </div>
+                <div class="am-form-group am-margin-left-sm am-margin-right-sm">
+                    <div class="am-padding-left-xl am-padding-right-xl">
+                        <button class="am-btn am-btn-warning" style="width: 100%;" id="submit">登录</button>
+                    </div>
+                </div>
+                <div class="am-text-xs am-text-center am-padding-bottom-xs">
+                    <!-- <a href="/Mobile/User/register.html" class="am-text-warning am-text-sm">立即注册</a>， -->登录享受更多优惠、更好服务！
+                </div>
+            </form>
+        </div>
+    </article>
+
+<!-- 提示 -->
+    <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd"></div>
+            <div class="am-modal-bd"></div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn">确定</span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+$('#valid_pic_register').bind('click',function(e) {
+    this.src = '/Mobile/Index/getImagecode.html?t=' + Math.random();
+});
+
+$("#loginaccount").bind("click",function(){
+    $("#login-phone").hide();
+    $("#login-account").show();
+    $('#mobile').attr('disabled','disabled');
+    $('#opt_m').attr('disabled','disabled');
+    $('#verify_sms').attr('disabled','disabled');
+    $('#account').removeAttr("disabled");
+    $('#valid_code_pic').removeAttr("disabled");
+    $('#opt_a').removeAttr("disabled");
+    $('#pass').removeAttr("disabled");
+});
+$("#loginphone").bind("click",function(){
+    $("#login-account").hide();
+    $("#login-phone").show();
+    $('#account').attr('disabled','disabled');
+    $('#valid_code_pic').attr('disabled','disabled');
+    $('#opt_a').attr('disabled','disabled');
+    $('#pass').attr('disabled','disabled');
+    $('#mobile').removeAttr("disabled");
+    $('#opt_m').removeAttr("disabled");
+    $('#verify_sms').removeAttr("disabled");
+});
+$('#submit').click(function() {
+    var $btn  = $(this);
+    var $form = $('#main_form');
+    if (!$form.validator('isFormValid')) {
+        return false;
+    };
+
+    $btn.button('loading');
+    $.post('/Mobile/User/login.json', $form.serialize(), function(data) {
+        if( data.success === true )
+        {
+            if( data.zc && data.zc == 1 )
+            {
+                data.message = data.message + '：尊贵的会员，微信实名制需绑定操作，请点击<a href="/Mobile/User/bindOpenid.html" style="color:red">绑定操作</a>';
+
+                T_T.fn.myAlert( data.message );
+                setTimeout(function() {
+                                        var g_s = "";
+                    window.location.href = '/Mobile/User/myList.html&sp_id=' + g_s;
+                                    },5000);
+            } else
+            {
+                T_T.fn.myAlert( data.message || '登录成功!');
+                setTimeout(function() {
+                                        var g_s = "";
+                    window.location.href = '/Mobile/User/myList.html&sp_id=' + g_s;
+                                    },2000);
+            }
+        } else
+        {
+            $btn.button('reset');
+            T_T.fn.myAlert(data.message || '系统错误！');
+            setTimeout(function() {
+                window.location.reload();
+            },5000);
+        }
+    }, 'json' );
+});
+
+var send_interval = function () {
+    send_interval.second = send_interval.second || 60;
+    send_interval.second--;
+    $("#send_content").html('(' + send_interval.second + ')短信已发送');
+    if (send_interval.second == 1) $("#send_content").html('短信已发送');
+}
+$('#send_content').bind('click', function(e) {
+    var mobile = $('#mobile').val();
+    var verify_pic = $('#verify_pic').val();
+    if( verify_pic == '' )
+    {
+        T_T.fn.myAlert( '请输入验证码！' );
+        return false;
+    }
+    //发短信
+    this.disabled = true;
+    var Interval_Id = setInterval(send_interval, 1000);
+    var resetInterval = function(argument) {
+        clearInterval(Interval_Id);
+        send_interval.second = 60;
+        $("#send_content").html('再次发送');
+        $("#send_content").removeAttr('disabled');
+    }
+
+    $.post('/Mobile/User/send.json', {
+        mobile: mobile,
+        verify_pic: verify_pic
+    },
+    function(data) {
+        if (!data.success) {
+            T_T.fn.myAlert(data.message);
+            //重置
+            resetInterval();
+        } else {
+            $("#send_content").html('短信已发送');
+            //$("#backsubmit").removeAttr('disabled');
+        }
+    },
+    'json');
+
+    setTimeout(function() {
+        resetInterval();
+    },60000);
+});
+$('#backsubmit').click(function() {
+    var $btn  = $(this);
+    var $form = $('#back_form');
+    var $data = {
+            account: $('#account').val(),
+            mobile: $('#mobile').val(),
+            verify_sms: $('#verify_sms').val(),
+        };
+    if (!$form.validator('isFormValid')) {
+        return false;
+    };
+    $btn.button('loading');
+    console.log($data);
+    $.post('/Mobile/User/searchUser.json', $data, function(data) {
+        if( data.success === true )
+        {
+            window.location.href = '/Mobile/User/backPass.html';
+        } else
+        {
+            $btn.button('reset');
+            T_T.fn.myAlert(data.message || '系统错误！');
+            if( data.times ){
+                setTimeout(function() {
+                    window.location.reload();
+                },6000);
+            }
+        }
+    }, 'json' );
+});
+
+    </script>

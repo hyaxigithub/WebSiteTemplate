@@ -1,0 +1,300 @@
+﻿
+body
+{
+    font-size: 12px;
+    font-family: 微软雅黑,宋体;
+    margin: 0;
+    padding: 0;
+}
+h2
+{
+    padding-left: 5px;
+}
+
+
+.mbx
+{
+    height: 23px;
+    font-weight: bold;
+    color: #9b6835;
+    border-bottom: 1px #999 dotted;
+    padding: 12px 19px 3px 19px;
+    margin: 4px;
+    background: url(../Images/direction.gif) 0 center no-repeat;
+}
+
+.a2
+{
+    width: auto;
+    height: 23px;
+    line-height: 23px;
+    _line-height: 21px;
+    background: url('../Images/line_n2.gif') repeat-x;
+    border: 1px solid #b8bcbf;
+    cursor: pointer;
+}
+.f2
+{
+    padding: 0 22px;
+    margin-right: 6px;
+    font: bold 12px/23px "微软雅黑";
+    color: #333;
+}
+.a3
+{
+    width: 78px;
+    height: 28px;
+}
+.a3 span a
+{
+    font: bold 14px/28px;
+    text-decoration: none;
+    border: 1px solid #720101;
+    display: block;
+    color: #fff;
+    background-color: #830000;
+    text-align: center;
+}
+.a3 span a:hover
+{
+    border: 1px solid #710404;
+    background-color: #710404;
+}
+
+
+/* Styles for search
+----------------------------------------------------------*/
+.submitcss
+{
+    width: auto;
+    height: 30px;
+    _height: 29px;
+    font: bold 14px/30px;
+    border: 0;
+    color: #fff;
+    padding: 0 15px;
+    _padding: 0 7px;
+    background-color: #830000;
+    cursor: pointer;
+}
+.pagination-info
+{
+    float: left;
+}
+.icon-details
+{
+    background: url('../Images/view.png') no-repeat;
+}
+.icon-site
+{
+    background: url('../Images/direction.gif') no-repeat;
+}
+#divQuery
+{
+    padding: 5px;
+    width: 860px;
+    height: auto;
+    font: bold 14px/20px "微软雅黑";
+    color: #333;
+    margin-top: 5px;
+}
+.input_search
+{
+    width: 420px;
+    height: 50px;
+    float: left;
+}
+.left02
+{
+    width: 860px;
+    height: 50px;
+    float: left;
+}
+.left03
+{
+    width: 860px;
+    height: 50px;
+    float: left;
+    clear: both;
+}
+.left03 input
+{
+    width: auto;
+    height: 30px;
+    cursor: pointer;
+    padding: 0 10px;
+    padding: 0 20px;
+    margin: 10px 145px 20px 0;
+    float: right;
+    display: inline;
+    background-color: #860101;
+    font: bold 15px/30px "微软雅黑";
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    border: 0 none;
+}
+.editor-label-search
+{
+    width: 116px;
+    height: 20px;
+    float: left;
+    text-align: right;
+    margin: 14px 0;
+    letter-spacing: 0.4pt;
+}
+.editor-field-search
+{
+    width: 220px;
+    height: 20px;
+    float: left;
+    margin: 14px 0;
+}
+.editor-field-search input
+{
+    float: left;
+    display: inline;
+    height: 19px;
+    width: 196px;
+    margin: 0 6px 0;
+    border: 1px solid #c0c0c0;
+}
+
+.editor-field-to
+{
+    width: 630px;
+    height: auto;
+    float: left;
+}
+.editor-field-search select
+{
+    float: left;
+    display: inline;
+    height: 24px;
+    width: 199px;
+    margin: 0 6px 0;
+    border: 1px solid #c0c0c0;
+}
+
+.editor-field-to input
+{
+    height: 19px;
+    width: 196px;
+    float: left;
+    margin: 14px 6px 0;
+    display: inline;
+    border: 1px solid #c0c0c0;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+
+.editor-label
+{
+    width: 120px;
+    height: 24px;
+    float: left;
+    text-align: right;
+    margin: 11px 0;
+    line-height: 24px;
+}
+
+.editor-label span
+{
+    width: 10px;
+    height: 5px;
+    float: left;
+    margin: 2px 0 0 69px;
+    display: inline-block;
+    color: Red;
+}
+.editor-label label
+{
+    width: 120px;
+}
+.editor-field
+{
+    width: 301px;
+    height: 24px;
+    float: left;
+    margin: 11px 0 11px 6px;
+}
+.bigdiv
+{
+    width: 100%;
+}
+
+.text-box
+{
+    font-family: 微软雅黑,新宋体;
+    height: 19px;
+    width: 182px;
+    border: 1px solid #CCC;
+}
+.textarea-box
+{
+    
+}
+.anUnderLine
+{
+    text-decoration: underline;
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+fieldset
+{
+    width: 854px;
+    margin-left: 4px;
+    padding: 1em;
+    border: 1px solid #CCC;
+}
+
+legend
+{
+    padding:  2px 8px 8px 12px;
+}
+input[type="password"]
+{
+    font-family: 微软雅黑,新宋体;
+    height: 19px;
+    width: 182px;
+    border: 1px solid #CCC;
+}
+
+textarea
+{
+    font-family: 微软雅黑,新宋体;
+    height: 106px;
+    width: 610px;
+    border: 1px solid #CCC;
+       margin: 11px 0 11px 6px;
+}
+select
+{
+    font-family: 微软雅黑,新宋体;
+    height: 23px;
+    width: 182px;
+    border: 1px solid #CCC;
+}
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    font-family: 微软雅黑,新宋体;
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    font-size: 16px;
+    font-family: 微软雅黑,新宋体;
+    display: none;
+}
+
+.input-validation-error
+{
+    font-family: 微软雅黑,新宋体;
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
